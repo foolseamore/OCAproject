@@ -1,5 +1,6 @@
 ﻿//#include <Siv3D.hpp>
 #include "GameMain.h"
+//test
 
 void Main()
 {
