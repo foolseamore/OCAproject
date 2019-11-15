@@ -1,0 +1,53 @@
+#include "BaseObject.h"
+
+
+
+BaseObject::BaseObject()
+{
+}
+
+
+BaseObject::~BaseObject()
+{
+}
+
+void BaseObject::Init()
+{
+
+}
+
+void BaseObject::DrawRect(int sizex,int sizey)
+{
+	rect = RectF(Arg::center = Vec2(GetX(), GetY() ), sizex, sizey);
+	//rect.draw(Palette::Green);
+}
+void BaseObject::DrawCircle(int sizex)
+{
+	circle = Circle(Arg::center = Vec2(GetX(), GetY()), sizex);
+}
+
+void BaseObject::DrawAnime(int max_frame, int frame, int speed, int sizex, int sizey)
+{
+
+	img_c = img_c + speed;
+
+	texture((img_c / frame) % max_frame*sizex, 0, sizex, sizey).drawAt(GetX(), GetY());
+
+}
+
+void BaseObject::RangeCheck()
+{
+	if (x <= 50) x = 50;
+	if (x > 600 - 50)x = 600 - 50;
+	
+}
+
+
+void BaseObject::Update()
+{
+
+}
+void BaseObject::Exit()
+{
+
+}

@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/Intermediate/OpenSiv3D/Debug-x64
+/App/OpenSiv3D(debug_64-bit)_log.html
+/App/OpenSiv3D(debug_64-bit).exe
