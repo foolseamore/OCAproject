@@ -16,7 +16,7 @@ void enemyType2::Init()
 	state = LIVE;
 	texture = GameManager::Instance().GetEnemy(2,0);
 	//bullet = GameManager::Instance().GetBullet();
-	SetX(300);
+	SetX(Random(100,600));
 	SetY(100);
 	img_c = 0;
 	bullet_cnt = 0;

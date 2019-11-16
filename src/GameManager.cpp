@@ -63,6 +63,9 @@ void GameManager::Init()
 
 	sceneManager = new SceneManager;
 	sceneManager->Init();
+
+	
+
 }
 
 void GameManager::Update()

@@ -19,6 +19,7 @@ public:
 	~HpUI();
 	
 	float damage;
+	bool GetDamage;
 
 	void Init();
 	void Update();

@@ -47,8 +47,8 @@ void UI::Init()
 	timeUI = new TimeUI;
 	timeUI->Init();
 	//HP
-	hpUI = new HpUI;
-	hpUI->Init();
+	/*hpUI = new HpUI;
+	hpUI->Init();*/
 	//ULT
 	/*ultUI = new ULT;
 	ultUI->Init();*/
@@ -73,7 +73,7 @@ void UI::Update()
 	//time
 	timeUI->Update();
 	//HP
-	hpUI->Update();
+	//hpUI->Update();
 	//ULT
 	//ultUI->Update();
 	//score
@@ -85,7 +85,7 @@ void UI::Exit()
 {
 	
 	delete timeUI;
-	delete hpUI;
+	//delete hpUI;
 	//delete ultUI;
 	delete score;
 	

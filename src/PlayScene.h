@@ -10,13 +10,21 @@
 class PlayScene :
 	public BaseScene
 {
-	ULT *ultUI;
+	int type1_size;
+	int type2_size;
+	int type3_size;
+	bool AllKilled;
+
+
 
 public:
 	PlayScene();
 	~PlayScene();
 
-	//UI *UI_;
+	ULT *ultUI;
+	HpUI *hpUI;
+	Player *p1;
+	Player2 *p2;
 
 	void Init() override;
 	void Update() override;
@@ -31,6 +39,10 @@ private:
 	//“|‚·”»’è
 	void HitEnemyE(enemyType1*type1, EnemyBaseObject*typeother);
 	void HitEnemyB(BaseBullet*b1, EnemyBaseObject*type);
+
+	//HPŒ¸‚é”»’è
+	void CheckHpB(BaseBullet *b1);
+	void CheckHpE(EnemyBaseObject *e1);
 
 
 };

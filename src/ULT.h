@@ -14,14 +14,14 @@ class ULT
 public:
 
 	int energy;
-	bool IsHit;
+	
 
 	ULT();
 	~ULT();
 	void Init();
 	void Update();
 	void Exit();
-	void Charge(bool flag);
+	
 
 	void ColorControl();
 };

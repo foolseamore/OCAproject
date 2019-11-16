@@ -9,7 +9,7 @@ class UI :
 {
 
 	TimeUI *timeUI;
-	HpUI *hpUI;
+	//HpUI *hpUI;
 	//ULT *ultUI;
 	Score *score;
 

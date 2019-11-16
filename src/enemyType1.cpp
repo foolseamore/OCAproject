@@ -25,7 +25,7 @@ void enemyType1::Init()
 }
 void enemyType1::Update()
 {
-	if (state == LIVE)
+	if (state == LIVE||state==REFLECT)
 	{
 		DrawRect(48, 48);
 		DrawAnime(2, 10, 1, 48, 48);

@@ -19,7 +19,7 @@ void ULT::Init()
 	ultwords_img = GameManager::Instance().GetUltWords();
 	energybar_img = GameManager::Instance().GetEnergyBar();
 	energy = 0;
-	IsHit = false;
+	
 }
 void ULT::Update()
 {
@@ -32,7 +32,6 @@ void ULT::Update()
 		Rect(710+18*i,434,16,32).draw(Palette::Blue);
 	}
 	energybar_img.drawAt(800, 450);
-	Charge(IsHit);
 	
 }
 void ULT::Exit()
@@ -57,13 +56,5 @@ void ULT::ColorControl()
 		s_ = 1;
 		v_ = 1;
 		h_ = 275;
-	}
-}
-void ULT::Charge(bool flag)
-{
-	if (flag)
-	{
-		energy += 1;
-		flag = false;
 	}
 }

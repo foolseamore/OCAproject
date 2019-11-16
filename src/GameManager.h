@@ -2,6 +2,7 @@
 #include "define.h"
 #include "SceneManager.h"
 #include "Singleton.h"
+#include"ULT.h"
 
 class GameManager :public Singleton<GameManager>
 {
@@ -14,6 +15,7 @@ public:
 	void Init();
 	void Update();
 	void Exit();
+
 
 	
 	Texture GetPlayer1() { return player1_img; }
@@ -43,6 +45,7 @@ public:
 		
 		
 	}
+
 
 
 

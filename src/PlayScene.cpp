@@ -9,8 +9,7 @@ struct PlayerData
 
 PlayerData player[2];
 
-Player *p1;
-Player2 *p2;
+
 enemyType1 *e1;
 enemyType2 *e2;
 enemyType3 *e3;
@@ -32,6 +31,8 @@ void PlayScene::Init()
 	UI_->Init();*/
 	ultUI = new ULT;
 	ultUI->Init();
+	hpUI = new HpUI;
+	hpUI->Init();
 	
 
 	p1 = new Player;
@@ -39,13 +40,29 @@ void PlayScene::Init()
 	p2 = new Player2;
 	p2->Init();
 
+	type1_size = Random(3, 5);
+	type2_size = Random(3, 5);
+	type3_size = Random(3, 5);
 
-	e1 = new enemyType1;
-	e2 = new enemyType2;
-	e3 = new enemyType3;
-	e1->Init();
-	e2->Init();
-	e3->Init();
+	e1 = new enemyType1[type1_size];
+	e2 = new enemyType2[type2_size];
+	e3 = new enemyType3[type3_size];
+
+	for (int i = 0; i < type1_size; i++)
+	{
+		e1[i].Init();
+	}
+	for (int i = 0; i < type2_size; i++)
+	{
+		e2[i].Init();
+	}
+	for (int i = 0; i < type3_size; i++)
+	{
+		e3[i].Init();
+	}
+	//e1->Init();
+	//e2->Init();
+	//e3->Init();
 	
 
 }
@@ -59,9 +76,21 @@ void PlayScene::Update()
 
 	p1->Update();
 	p2->Update();
-	e1->Update();	
+	/*e1->Update();	
 	e2->Update();
-	e3->Update();
+	e3->Update();*/
+	for (int i = 0; i < type1_size; i++)
+	{
+		e1[i].Update();
+	}
+	for (int i = 0; i < type2_size; i++)
+	{
+		e2[i].Update();
+	}
+	for (int i = 0; i < type3_size; i++)
+	{
+		e3[i].Update();
+	}
 
 	//î¬Ç™åqÇ™Ç¡ÇƒÇÈÇ©Ç«Ç§Ç©
 	if (p1->GetX() >= p2->GetX() - 100)
@@ -78,12 +107,21 @@ void PlayScene::Update()
 	}
 	
 	//îΩéÀèàóù
-	
-	CaculateAngleE(e1, p1);
-	CaculateAngleE(e1, p2);
+	for (int i = 0; i < type1_size; i++)
+	{
+		CaculateAngleE(&e1[i], p1);
+		CaculateAngleE(&e1[i], p2);
+	}
+	//CaculateAngleE(e1, p1);
+	//CaculateAngleE(e1, p2);
 
 	for (int i = 0; i < BULLET_MAX; i++)
 	{
+		/*for (int j = 0; i < type2_size; j++)
+		{
+			CaculateAngleB(&e2[j].bullet[i], p1);
+			CaculateAngleB(&e2[j].bullet[i], p2);
+		}*/
 		CaculateAngleB(&e2->bullet[i], p1);
 		CaculateAngleB(&e2->bullet[i], p2);
 		CaculateAngleB(&e3->bullet[i], p1);
@@ -100,17 +138,24 @@ void PlayScene::Update()
 	HitEnemyE(e1, e2);
 	HitEnemyE(e1, e3);
 
+	//HPå∏ÇÈîªíË
+	CheckHpE(e1);
+	for (int i = 0; i < BULLET_MAX; i++)
+	{
+		CheckHpB(&e2->bullet[i]);
+		CheckHpB(&e3->bullet[i]);
+	}
 
 	ultUI->Update();
+	hpUI->Update();
 
 }
 void PlayScene::Exit()
 {
 	delete p1;
 	delete p2;
-	/*UI_->Exit();
-	delete UI_;*/
 	delete ultUI;
+	delete hpUI;
 }
 
 void PlayScene::CaculateAngleE(enemyType1*b1, BaseObject*b2)
@@ -118,7 +163,8 @@ void PlayScene::CaculateAngleE(enemyType1*b1, BaseObject*b2)
 	if (b1->rect.intersects(b2->rect))
 	{
 
-		if (b1->y + 24 >= b2->rect.y)
+		if (b1->y >= b2->rect.y)
+
 		{
 			b1->IsReflect = true;
 			float dx = b1->rect.x - (b2->rect.x + 35) + (rand() % 40 - 20);
@@ -126,22 +172,21 @@ void PlayScene::CaculateAngleE(enemyType1*b1, BaseObject*b2)
 			float angle = TO_DEG(atan2f(dy, dx));// +(rand() % 20 - 10);
 			b1->speedx = 2 * ENEMY_SPEED * cosf(TO_RAD(angle));
 			b1->speedy = 2 * ENEMY_SPEED * sinf(TO_RAD(angle));
-			//ultUI->energy += 1;
-
+			ultUI->energy += 1;
 		}
 	}
+	
 }
 void PlayScene::CaculateAngleB(BaseBullet*b1, BaseObject*b2)
 {
 	if (b1->rect.intersects(b2->rect))
 
 	{
-		if (b1->pos.y + 7 >= b2->rect.y)
+		if (b1->pos.y >= b2->rect.y)
 		{
 			b1->IsReflect = true;
 			float dx = b1->pos.x - (b2->rect.x + 40) + (rand() % 40 - 20);
 			float dy = b1->pos.y - (b2->rect.y + 58) + (rand() % 20 - 10);
-
 			float angle = TO_DEG(atan2f(dy, dx)) + (rand() % 20 - 10);
 			b1->speedx = 2 * ENEMY_SPEED * cosf(TO_RAD(angle));
 			b1->speedy = 2 * ENEMY_SPEED * sinf(TO_RAD(angle));
@@ -152,14 +197,14 @@ void PlayScene::CaculateAngleB(BaseBullet*b1, BaseObject*b2)
 
 void PlayScene::HitEnemyE(enemyType1*type1, EnemyBaseObject*typeother)
 {
-	if (type1->IsReflect&&typeother->state==LIVE)
+	if (typeother->state==LIVE&&type1->IsReflect)
 	{
 		
 		if (type1->rect.intersects(typeother->rect))
 		{
 			type1->state = DEAD;
 			typeother->state = DEAD;
-			//ultUI->energy += 1;
+		
 		}
 	}
 }
@@ -172,7 +217,25 @@ void PlayScene::HitEnemyB(BaseBullet*b1, EnemyBaseObject*type)
 		{
 			b1->flag = false;
 			type->state = DEAD;
-			//ultUI->energy += 1;
+			
 		}
+	}
+}
+void PlayScene::CheckHpB(BaseBullet *b1)
+{
+	if (b1->pos.y >= 650&&b1->flag)
+	{
+		hpUI->damage += 1;
+		hpUI->GetDamage = true;
+		b1->flag = false;
+		b1->IsReflect = false;
+	}
+}
+void PlayScene::CheckHpE(EnemyBaseObject *e1)
+{
+	if (e1->y >= 650 && e1->state == LIVE)
+	{
+		hpUI->damage += 1;
+		hpUI->GetDamage = true;
 	}
 }
