@@ -1,7 +1,8 @@
 #pragma once
+#include "singleton.h"
 #include "BaseObject.h"
 class Player2 :
-	public BaseObject
+	public BaseObject,public Singleton<Player2>
 {
 public:
 	Player2();

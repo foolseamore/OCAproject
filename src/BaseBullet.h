@@ -9,7 +9,7 @@ public:
 	RectF rect;
 	Point pos;
 	float speedx, speedy;
-	bool flag;
+	bool flag = false;
 	bool IsReflect;
 
 

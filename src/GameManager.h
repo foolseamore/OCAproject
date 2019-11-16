@@ -16,7 +16,7 @@ public:
 	void Update();
 	void Exit();
 
-
+	
 	
 	Texture GetPlayer1() { return player1_img; }
 	Texture GetPlayer2() { return player2_img; }

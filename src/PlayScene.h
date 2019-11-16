@@ -25,6 +25,7 @@ public:
 	HpUI *hpUI;
 	Player *p1;
 	Player2 *p2;
+	
 
 	void Init() override;
 	void Update() override;
@@ -35,11 +36,10 @@ private:
 	//“G‚Ì’µ‚Ë•Ô‚·
 	void CaculateAngleE(enemyType1*b1, BaseObject*b2);
 	//‹Ê‚Ì’µ‚Ë•Ô‚·
-	void CaculateAngleB(BaseBullet*b1, BaseObject*b2);
+	void CaculateAngleB(BaseBullet *b1, BaseObject*b2);
 	//“|‚·”»’è
 	void HitEnemyE(enemyType1*type1, EnemyBaseObject*typeother);
 	void HitEnemyB(BaseBullet*b1, EnemyBaseObject*type);
-
 	//HPŒ¸‚é”»’è
 	void CheckHpB(BaseBullet *b1);
 	void CheckHpE(EnemyBaseObject *e1);
