@@ -42,7 +42,7 @@ void PlayScene::Init()
 
 	type1_size = Random(3, 5);
 	type2_size = Random(3, 5);
-	type3_size = Random(3, 5);
+	type3_size = Random(3, 5);//lk
 
 	e1 = new enemyType1[type1_size];
 	e2 = new enemyType2[type2_size];
