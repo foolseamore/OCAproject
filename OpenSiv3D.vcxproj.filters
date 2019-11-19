@@ -357,6 +357,9 @@
     <ClCompile Include="src\Score.cpp">
       <Filter>Source Files\score</Filter>
     </ClCompile>
+    <ClCompile Include="src\EnemyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BaseObject.h">
@@ -424,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="src\Score.h">
       <Filter>Header Files\score</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EnemyManager.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

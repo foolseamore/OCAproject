@@ -14,15 +14,27 @@ enemyType3::~enemyType3()
 
 void enemyType3::Init()
 {
-	state = LIVE;
+	state = BORN;
 	texture = GameManager::Instance().GetEnemy(3,0);
-	SetX(150);
-	SetY(100);
+	SetX(Random(100,150));
+	SetY(-100);
 	img_c = 0;
 	bullet_cnt = 0;
+	speedy = 2;
 }
 void enemyType3::Update()
 {
+	if (state == BORN)
+	{
+		DrawAnime(2, 10, 1, 48, 48);
+		y += speedy;
+		if (GetY() >= 100)
+		{
+			SetY(GetY());
+			speedy = 0;
+			state = LIVE;
+		}
+	}
 	if (state == LIVE)
 	{
 		DrawRect(48, 48);

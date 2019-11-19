@@ -265,6 +265,7 @@
     <ClCompile Include="src\BaseScene.cpp" />
     <ClCompile Include="src\EndScene.cpp" />
     <ClCompile Include="src\EnemyBaseObject.cpp" />
+    <ClCompile Include="src\EnemyManager.cpp" />
     <ClCompile Include="src\enemyType1.cpp" />
     <ClCompile Include="src\enemyType2.cpp" />
     <ClCompile Include="src\enemyType3.cpp" />
@@ -289,6 +290,7 @@
     <ClInclude Include="src\define.h" />
     <ClInclude Include="src\EndScene.h" />
     <ClInclude Include="src\EnemyBaseObject.h" />
+    <ClInclude Include="src\EnemyManager.h" />
     <ClInclude Include="src\enemyType1.h" />
     <ClInclude Include="src\enemyType2.h" />
     <ClInclude Include="src\enemyType3.h" />

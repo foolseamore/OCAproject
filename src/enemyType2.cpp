@@ -13,25 +13,29 @@ enemyType2::~enemyType2()
 
 void enemyType2::Init()
 {
-	state = LIVE;
+	state = BORN;
 	texture = GameManager::Instance().GetEnemy(2,0);
-	//bullet = GameManager::Instance().GetBullet();
 	SetX(Random(100,600));
-	SetY(100);
+	SetY(-100);
 	img_c = 0;
 	bullet_cnt = 0;
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	e_bullet[i].pos.x = 0;
-	//	e_bullet[i].pos.y = 0;
-	//	e_bullet[i].flag = false;
-	//	e_bullet[i].IsReflect = false;
-	//}
-	
+	speedy = 2;
+
 }
 
 void enemyType2::Update()
 {
+	if (state == BORN)
+	{
+		DrawAnime(2, 10, 1, 48, 48);
+		y += speedy;
+		if (GetY() >= 100)
+		{
+			SetY(GetY());
+			speedy = 0;
+			state = LIVE;
+		}
+	}
 	if (state == LIVE)
 	{
 		bullet_cnt++;

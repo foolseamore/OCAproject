@@ -44,7 +44,7 @@ enum State
 {
 	LIVE = 50,
 	DEAD = 51,
-	BURN,
+	BORN,
 	REFLECT,
 };
 

@@ -59,17 +59,18 @@ void BaseBullet::BulletRender(int kind )
 		pos.y += speedy;
 		
 
-		//if (pos.y >= 650)
-		//{
-		//	
-		//	flag = false;
-		//	IsReflect = false;
-		//	/*pos.x = 0;
-		//	pos.y = 0;*/
+		if (pos.y >= 650)
+		{
+			
+			flag = false;
+			IsReflect = false;
+			/*pos.x = 0;
+			pos.y = 0;*/
 
-		//}
+		}
 
 	}
+	
 }
 void BaseBullet::CheckReflect(int size)
 {
