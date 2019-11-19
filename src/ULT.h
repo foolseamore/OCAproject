@@ -8,12 +8,12 @@ class ULT
 	double s_;
 	double v_;
 	int h_;
-	
+	int energy;
 
 
 public:
 
-	int energy;
+	
 	
 
 	ULT();
@@ -22,6 +22,8 @@ public:
 	void Update();
 	void Exit();
 	
+	void SetEnergy(int sete) { energy = sete; }
+	int GetEnergy() { return energy; }
 
 	void ColorControl();
 };

@@ -14,6 +14,7 @@ public:
 	~enemyType2();
 
 	BaseBullet bullet[BULLET_MAX];
+	int bullet_kind;
 
 	//void BulletUpdate(int kind,Bullet *b1);
 

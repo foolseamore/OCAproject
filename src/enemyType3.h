@@ -12,6 +12,7 @@ public:
 	~enemyType3();
 
 	BaseBullet bullet[BULLET_MAX];
+	int bullet_kind;
 
 	void Init() override;
 	void Update() override;

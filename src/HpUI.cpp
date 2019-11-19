@@ -35,7 +35,6 @@ void HpUI::Init()
 void HpUI::Update()
 {
 	ColorControl();
-	//demage += 0.1f;
 	hpbar_img.drawAt(750, 650);
 	hpwords_img.draw(640, 510,rgb);
 	DrawAnime(hp_img, 73, 5, 1,2.5f, 64, 64.f, 750, 650.f);
@@ -44,7 +43,13 @@ void HpUI::Update()
 		number_img(38 * g_hp[i].cnt, 38, 38).draw(g_hp[i].pos.x, g_hp[i].pos.y,rgb);
 	}
 
-	
+	if (GetDamage)
+	{
+		g_hp[2].cnt -= 1;
+		GetDamage = false;
+	}
+
+
 	for (int i = 2; i > 0; i--)
 	{
 		if (g_hp[i].cnt < 0)
@@ -53,11 +58,7 @@ void HpUI::Update()
 			g_hp[i - 1].cnt--;
 		}
 	}
-	if (GetDamage)
-	{
-		g_hp[2].cnt -= 1;
-		GetDamage = false;
-	}
+
 
 }
 void HpUI::Exit()

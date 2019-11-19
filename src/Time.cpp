@@ -54,7 +54,7 @@ void TimeUI::Update()
 
 	frame_cnt++;
 
-	if ((int)frame_cnt % 10 == 0)
+	if ((int)frame_cnt % 60 == 0)
 	{
 		g_time[3].cnt--;
 	}

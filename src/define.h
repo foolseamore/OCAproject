@@ -17,10 +17,14 @@ using namespace std;
 #define TO_DEG(rad) rad/2/PI*360
 
 #define ENEMY_TEXTURE 25
+#define ENEMY_SIZE 48
 #define ENEMY_BULLET_MAX 20
+#define ENEMY_BORNPOS 240
 #define TYPE1_MAX 5
+#define TYPE2_MAX 5
+#define TYPE3_MAX 5
 
-#define PLAYER_SPEED 5.0
+#define PLAYER_SPEED 10.0
 #define ENEMY_SPEED 5.0
 
 #define BULLET_MAX 20

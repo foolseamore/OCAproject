@@ -23,8 +23,8 @@ void Player2::Init()
 }
 void Player2::DrawRectP(int sizex, int sizey)
 {
-	rect = RectF(Arg::center = Vec2(GetX(), GetY() - 60), sizex, sizey);
-	rect.draw(Palette::Green);
+	rect = RectF(Arg::center = Vec2(GetX(), GetY() - 58), sizex, sizey);
+	//rect.draw(Palette::Green);
 }
 
 void Player2::Key_Op()
@@ -44,7 +44,7 @@ void Player2::Key_Op()
 
 void Player2::Update()
 {
-	DrawRectP(100, 3);
+	DrawRectP(100, 8);
 	DrawAnime(5, 8, 1, 100, 128);
 	Key_Op();
 	

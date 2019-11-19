@@ -358,7 +358,7 @@
       <Filter>Source Files\score</Filter>
     </ClCompile>
     <ClCompile Include="src\EnemyManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -429,7 +429,7 @@
       <Filter>Header Files\score</Filter>
     </ClInclude>
     <ClInclude Include="src\EnemyManager.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

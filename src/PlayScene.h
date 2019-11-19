@@ -43,6 +43,8 @@ private:
 	//HPŒ¸‚é”»’è
 	void CheckHpB(BaseBullet *b1);
 	void CheckHpE(EnemyBaseObject *e1);
+	//“GÄ¶
+	void ReBornEnemy(EnemyBaseObject*enemy);
 
 
 };

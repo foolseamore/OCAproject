@@ -42,12 +42,11 @@ public:
 		case 3:return enemy_img_type3[a]; break;
 		default: break;
 		}
-		
-		
 	}
 
-
-
+	//score
+	void SetScore(int sets) { score = sets; }
+	int GetScores() { return score; }
 
 private:
 	friend class Singleton<GameManager>;
@@ -74,6 +73,9 @@ private:
 	Texture ultwords_img;
 	Texture energybar_img;
 	Texture enemykilled_img;
+
+
+	int score = 0;
 
 
 };

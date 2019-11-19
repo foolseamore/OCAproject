@@ -11,6 +11,7 @@ public:
 	float rot;
 	float speedx, speedy;
 	State state;
+	int born_pos;
 	
 
 	void Init() override;
