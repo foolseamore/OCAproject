@@ -1,20 +1,23 @@
 #pragma once
 #include "define.h"
-class TimeUI
+#include "BaseScene.h"
+class TimeUI:public BaseScene
 {
 	
 
-	bool ColorF(int t1, int t2);
-	void Scale(double rate);
-	void Calcu(int t1, int t2,int t3);
+	bool ColorF(int gtime);
+	void ScaleControl(int gtime, double rate);
+	
 
 
 	Texture number_img;
 	Texture time_img;
-	BaseData g_time[4];
+	BaseData g_time[3];
 	float frame_cnt;
 	double scale_speed;
 	double scale_rate;
+
+	int Game_time;
 
 
 public:

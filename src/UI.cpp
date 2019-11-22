@@ -46,9 +46,9 @@ void UI::Init()
 	//ŽžŠÔ
 	timeUI = new TimeUI;
 	timeUI->Init();
-	//score
-	score = new Score;
-	score->Init();
+	////score
+	//score = new Score;
+	//score->Init();
 
 }
 void UI::Update()
@@ -67,7 +67,7 @@ void UI::Update()
 	//time
 	timeUI->Update();
 	//score
-	score->Update();
+	//score->Update();
 
 
 }
@@ -75,6 +75,6 @@ void UI::Exit()
 {
 	
 	delete timeUI;
-	delete score;
+	//delete score;
 	
 }

@@ -64,24 +64,26 @@ void GameManager::Init()
 	sceneManager = new SceneManager;
 	sceneManager->Init();
 
+	//SetWave(score);
 	
 
 }
 
 void GameManager::Update()
 {
+	//SetWave(score); //wave count
 
 	sceneManager->Update(gameState);
 
-	if (KeyUp.down())
+	if (time==0||hp==0)
 	{
-		gameState -= 1;
+		gameState = End;
 	}
-	else if (KeyDown.down())
+	/*else if (KeyDown.down())
 	{
 		gameState += 1;
-	}
-
+	}*/
+	Print <<U"Wave:"<< GetWave();
 
 }
 

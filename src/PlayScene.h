@@ -3,6 +3,7 @@
 #include "Player.h"
 #include"Player2.h"
 #include"UI.h"
+#include "GameManager.h"
 #include "enemyType1.h"
 #include"enemyType2.h"
 #include"enemyType3.h"
@@ -15,6 +16,9 @@ class PlayScene :
 	int type3_size;
 	bool AllKilled;
 
+	int score;
+	int g_now_wave;
+	int g_new_wave;
 
 
 public:
@@ -23,6 +27,7 @@ public:
 
 	ULT *ultUI;
 	HpUI *hpUI;
+	Score *ScoreUI;
 	Player *p1;
 	Player2 *p2;
 	
@@ -45,6 +50,9 @@ private:
 	void CheckHpE(EnemyBaseObject *e1);
 	//ìGçƒê∂
 	void ReBornEnemy(EnemyBaseObject*enemy);
+	//Wave ïœçX
+	void WaveCheck( int type_size, EnemyBaseObject *enemy);
+
 
 
 };

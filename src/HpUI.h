@@ -1,6 +1,7 @@
 #pragma once
 #include "define.h"
-class HpUI
+#include "BaseScene.h"
+class HpUI:public BaseScene
 {
 	
 	Texture number_img;
@@ -13,13 +14,15 @@ class HpUI
 
 	Color rgb;
 
+	int Game_hp;
+
 public:
 
 	HpUI();
 	~HpUI();
 	
 	float damage;
-	bool GetDamage;
+
 
 	void Init();
 	void Update();
@@ -28,7 +31,7 @@ public:
 	void ColorControl();
 	void DrawAnime(Texture texture,int max_frame, int frame, int speed,float scalerate, int sizex, float sizey,int getx,float gety);
 
-	int GetHp() { return g_hp[2].cnt; }
-	void SetHp(int sethp) { g_hp[2].cnt = sethp; }
+	/*int GetHp() { return g_hp[2].cnt; }
+	void SetHp(int sethp) { g_hp[2].cnt = sethp; }*/
 };
 

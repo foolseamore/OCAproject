@@ -6,6 +6,7 @@ class enemyType3 :
 {
 	//BaseBullet bullet[10];
 	int bullet_cnt;
+	int cool_time;
 
 public:
 	enemyType3();

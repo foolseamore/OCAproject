@@ -15,7 +15,7 @@ void Player::Init()
 {
 	texture = GameManager::Instance().GetPlayer1();
 	SetX(100);
-	SetY(600);
+	SetY(GAME_WINDOW_H);
 	img_c = 0;
 	
 	
@@ -32,26 +32,22 @@ void Player::Key_Op()
 	if (KeyA.pressed())
 	{
 		isCombine = false;
-		x -= PLAYER_SPEED;
+		SetX(GetX() - PLAYER_SPEED);
 		
 	}
 	else if (KeyS.pressed() && isCombine == false)
 	{
-		x += PLAYER_SPEED;
+		SetX(GetX() + PLAYER_SPEED);
 	}
 }
 void Player::Update()
 {
 	DrawRectP(100, 8);
 	
-	DrawAnime(5, 8, 1, 100, 128);
-
+	DrawAnime(5, 8, 1, PLAYER_SIZE_X, PLAYER_SIZE_Y);
 	
 	Key_Op();
 	RangeCheck();
-	
-	
-
 
 }
 
