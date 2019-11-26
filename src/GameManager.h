@@ -10,7 +10,7 @@ public:
 	
 	~GameManager();
 
-	int gameState;
+	GameState gameState;
 
 	void Init();
 	void Update();
@@ -42,12 +42,22 @@ public:
 		case 3:return enemy_img_type3[a]; break;
 		default: break;
 		}
-		
-		
 	}
 
-
-
+	//score
+	void SetScore(int sets) { score = sets; }
+	void AddScore() { score += 1; }
+	int GetScores() { return score; }
+	//wave
+	//void SetWave(int setw) { wave = setw/ONE_WAVE+1; }
+	int GetWave() { return wave+score / ONE_WAVE; }
+	//hp
+	void SetHp(int seth) { hp = seth; }
+	void DecreseHP(int damage) { hp -= damage; }
+	int GetHp() { return hp; }
+	//time
+	void SetTime(int sett) { time = sett; }
+	int GetTimes() { return time; }
 
 private:
 	friend class Singleton<GameManager>;
@@ -74,6 +84,13 @@ private:
 	Texture ultwords_img;
 	Texture energybar_img;
 	Texture enemykilled_img;
+
+
+	int score = 0; //score
+	int wave = 1;  
+	int hp = 100;
+	int time = 180;
+
 
 
 };

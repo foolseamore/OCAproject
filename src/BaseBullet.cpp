@@ -22,9 +22,10 @@ void BaseBullet::Init(float getx, float gety, int movx, int movy)
 	IsReflect = false;
 
 }
-void BaseBullet::Update(int kind)
+void BaseBullet::Update(int kind,int type)
 {
-	CheckReflect(14);
+	CheckReflect(14,type);
+	
 	BulletRender(kind);
 	
 }
@@ -59,37 +60,32 @@ void BaseBullet::BulletRender(int kind )
 		pos.y += speedy;
 		
 
-		if (pos.y >= 650)
-		{
-			
-			flag = false;
-			IsReflect = false;
-			/*pos.x = 0;
-			pos.y = 0;*/
-
-		}
-
 	}
 	
 }
-void BaseBullet::CheckReflect(int size)
+void BaseBullet::CheckReflect(int size,int type)
 {
-	if (pos.x < 0 + size / 2 )
+	if (pos.x <= 0 + size / 2 )
 	{
 		pos.x = size;
 		speedx = -speedx;
 		//IsReflect = true;
 	}
-	if (pos.x > GAME_WINDOW_W - 2 / size)
+	if (pos.x >= GAME_WINDOW_W - 2 / size)
 	{
 		pos.x = GAME_WINDOW_W-size;
 		speedx = -speedx;
 		//IsReflect = true;
 	}
 	if (pos.y < 0 + size / 2)
-	{
-		pos.y = size;
-		speedy = -speedy;
+	{	
+		if (type == 2)
+		{
+			pos.y = size;
+			speedy = -speedy;
+		}
+		if (type == 3)
+			flag = false;
 		//IsReflect = true;
 		
 	}

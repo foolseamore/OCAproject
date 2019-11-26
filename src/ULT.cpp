@@ -29,9 +29,10 @@ void ULT::Update()
 	
 	for (int i= 0; i < energy; i++)
 	{
-		Rect(710+18*i,434,16,32).draw(Palette::Blue);
+		Rect(710+6*i,434,4,32).draw(Palette::Blue);
 	}
 	energybar_img.drawAt(800, 450);
+	
 	
 }
 void ULT::Exit()
@@ -42,16 +43,16 @@ void ULT::ColorControl()
 {
 	
 
-	if (energy >= 10)
+	if (energy >= 30)
 	{
-		energy = 10;
+		energy = 30;
 		h_ += 10;
 		s_ -= 0.02f;
 
 		if (s_ <= 0) s_ = 1;
 		if (h_ >= 360)h_ = 0;
 	}
-	else if (energy < 10)
+	else if (energy < 30)
 	{
 		s_ = 1;
 		v_ = 1;

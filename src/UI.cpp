@@ -9,7 +9,7 @@ struct BaseObj
 	Texture img;
 };
 
-//Texture number_img;
+
 
 BaseObj background[3];
 
@@ -46,15 +46,9 @@ void UI::Init()
 	//ŽžŠÔ
 	timeUI = new TimeUI;
 	timeUI->Init();
-	//HP
-	/*hpUI = new HpUI;
-	hpUI->Init();*/
-	//ULT
-	/*ultUI = new ULT;
-	ultUI->Init();*/
-	//score
-	score = new Score;
-	score->Init();
+	////score
+	//score = new Score;
+	//score->Init();
 
 }
 void UI::Update()
@@ -72,12 +66,8 @@ void UI::Update()
 	
 	//time
 	timeUI->Update();
-	//HP
-	//hpUI->Update();
-	//ULT
-	//ultUI->Update();
 	//score
-	score->Update();
+	//score->Update();
 
 
 }
@@ -85,8 +75,6 @@ void UI::Exit()
 {
 	
 	delete timeUI;
-	//delete hpUI;
-	//delete ultUI;
-	delete score;
+	//delete score;
 	
 }

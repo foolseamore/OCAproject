@@ -14,24 +14,27 @@ enemyType1::~enemyType1()
 void enemyType1::Init()
 {
 	state = BORN;
+	born_pos = ENEMY_BORNPOS;
 	IsReflect = false;
-	texture = GameManager::Instance().GetEnemy(1,0);
+	texture = GameManager::Instance().GetEnemy(1,1);
 	SetX(Random(100,500));
 	SetY(-100);
 	img_c = 0;
+	SetX(Random(0, ENEMY_COL)*ENEMY_SIZE + 36);
+	SetY((Random(0, ENEMY_ROW)*ENEMY_SIZE + 24) - born_pos);
 	speedx = 0;
 	speedy = 2;
-	/*speedx = rand() % 10 - 5;
-	speedy = rand() % 5 + 5;*/
+	
 
 }
 void enemyType1::Update()
 {
 	if (state == BORN)
 	{
-		DrawAnime(2, 10, 1, 48, 48);
-		y += speedy;
-		if (GetY() >= 100)
+		DrawAnime(4, 10, 1, ENEMY_SIZE, ENEMY_SIZE);
+		born_pos -= speedy;
+		SetY(GetY() + speedy);
+		if (born_pos == 0)
 		{
 			SetY(GetY());
 			speedx = rand() % 10 - 5;
@@ -41,10 +44,10 @@ void enemyType1::Update()
 	}
 	if (state == LIVE||state==REFLECT)
 	{
-		DrawRect(48, 48);
-		DrawAnime(2, 10, 1, 48, 48);
+		DrawRect(ENEMY_SIZE, ENEMY_SIZE);
+		DrawAnime(4, 10, 1, ENEMY_SIZE, ENEMY_SIZE);
 		//”½ŽË
-		CheckReflect(48);
+		CheckReflect(ENEMY_SIZE);
 		x += speedx;
 		y += speedy;
 	}
@@ -58,9 +61,9 @@ void enemyType1::Exit()
 
 void enemyType1::CheckReflect(int size)
 {
-	if (GetX() <= 0 + size / 2 || GetX() >= GAME_WINDOW_W - 2 / size) speedx = -speedx;
-	if (GetY() <= 0 + size / 2)speedy = -speedy;
-	if (GetY() >= 650)
+	if (GetX() < 0 + size / 2 || GetX() >= GAME_WINDOW_W - 2 / size) speedx = -speedx;
+	if (GetY() < 0 + size / 2)speedy = -speedy;
+	if (GetY() >= GAME_DEAD_RANGE)
 	{
 		IsReflect = false;
 		state = DEAD;

@@ -38,7 +38,7 @@ void BaseObject::DrawAnime(int max_frame, int frame, int speed, int sizex, int s
 void BaseObject::RangeCheck()
 {
 	if (x <= 50) x = 50;
-	if (x > 600 - 50)x = 600 - 50;
+	if (x > GAME_WINDOW_W - 50)x = GAME_WINDOW_W - 50;
 	
 }
 

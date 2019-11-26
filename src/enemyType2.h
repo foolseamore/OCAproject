@@ -8,12 +8,14 @@ class enemyType2 :
 	Bullet e_bullet[10];*/
 
 	int bullet_cnt;
+	int cool_time;
 
 public:
 	enemyType2();
 	~enemyType2();
 
 	BaseBullet bullet[BULLET_MAX];
+	//int bullet_kind;
 
 	//void BulletUpdate(int kind,Bullet *b1);
 

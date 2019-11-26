@@ -15,20 +15,24 @@ enemyType3::~enemyType3()
 void enemyType3::Init()
 {
 	state = BORN;
-	texture = GameManager::Instance().GetEnemy(3,0);
-	SetX(Random(100,150));
-	SetY(-100);
+	born_pos = ENEMY_BORNPOS;
+	texture = GameManager::Instance().GetEnemy(3,2);
+	SetX(Random(0, ENEMY_COL)*ENEMY_SIZE + 36);
+	SetY((Random(0, ENEMY_ROW)*ENEMY_SIZE + 24) - born_pos);
 	img_c = 0;
 	bullet_cnt = 0;
+	cool_time = 60;
 	speedy = 2;
+	speedy = Random(2, 5);
 }
 void enemyType3::Update()
 {
 	if (state == BORN)
 	{
-		DrawAnime(2, 10, 1, 48, 48);
-		y += speedy;
-		if (GetY() >= 100)
+		DrawAnime(4, 10, 1, ENEMY_SIZE, ENEMY_SIZE);
+		born_pos -= speedy;
+		SetY(GetY() + speedy);
+		if (born_pos == 0)
 		{
 			SetY(GetY());
 			speedy = 0;
@@ -37,25 +41,30 @@ void enemyType3::Update()
 	}
 	if (state == LIVE)
 	{
-		DrawRect(48, 48);
-		DrawAnime(4, 10, 1, 48, 48);
+		DrawRect(ENEMY_SIZE, ENEMY_SIZE);
+		DrawAnime(4, 10, 1, ENEMY_SIZE, ENEMY_SIZE);
 		bullet_cnt++;
-		if (bullet_cnt % 60 == 0)
+		if (bullet_cnt % cool_time == 0)
 		{
-			for (int i = 0; i < BULLET_MAX; i++)
+			int attack = Random(0, 1);
+			if (attack == 0)
 			{
-				if (bullet[i].flag == false)
+				for (int i = 0; i < BULLET_MAX; i++)
 				{
-					bullet[i].Init(GetX(), GetY(), rand() % 10 - 5, rand() % 5 + 5);
-					bullet[i].flag = true;
-					break;
+					if (bullet[i].flag == false)
+					{
+						bullet[i].Init(GetX(), GetY(), rand() % 10 - 5, rand() % 5 + 5);
+						bullet[i].flag = true;
+						bullet[i].bullet_kind = Random(3, 4);
+						break;
+					}
 				}
 			}
 		}
 	}
 	for (int i = 0; i < BULLET_MAX; i++)
 	{
-		bullet[i].Update(4);
+		bullet[i].Update(bullet[i].bullet_kind,3);
 
 	}
 	

@@ -357,8 +357,8 @@
     <ClCompile Include="src\Score.cpp">
       <Filter>Source Files\score</Filter>
     </ClCompile>
-    <ClCompile Include="src\EnemyManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="src\message.cpp">
+      <Filter>Source Files\scene\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -428,8 +428,8 @@
     <ClInclude Include="src\Score.h">
       <Filter>Header Files\score</Filter>
     </ClInclude>
-    <ClInclude Include="src\EnemyManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\message.h">
+      <Filter>Header Files\scene\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
