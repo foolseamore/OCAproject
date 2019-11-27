@@ -13,16 +13,18 @@ enemyType2::~enemyType2()
 
 void enemyType2::Init()
 {
+	SetTag(T_Enemy);
+	wave = GameManager::Instance().GetWave();
 	state = BORN;
 	born_pos = ENEMY_BORNPOS;
-	texture = GameManager::Instance().GetEnemy(2,1);
+	texture = GameManager::Instance().GetEnemy(2,Random(0,wave-1));
 	SetX(Random(0, ENEMY_COL)*ENEMY_SIZE + 36);
 	SetY((Random(0, ENEMY_ROW)*ENEMY_SIZE+24)-born_pos);
 	img_c = 0;
 	bullet_cnt = 0;
-	cool_time = 60;
-	speedy = Random(2,5);
-	wave = GameManager::Instance().GetWave();
+	cool_time = 50;
+	speedy = Random(3,6);
+	
 
 }
 
@@ -56,7 +58,7 @@ void enemyType2::Update()
 				{
 					if (bullet[i].flag == false)
 					{
-						bullet[i].Init(GetX(), GetY(), 0, Random(3, 5));
+						bullet[i].Init(GetX(), GetY(), 0, Random(5, 8));
 						bullet[i].flag = true;
 						bullet[i].bullet_kind = Random(1, 2);
 						break;
@@ -69,7 +71,7 @@ void enemyType2::Update()
 
 	for (int i = 0; i < BULLET_MAX; i++)
 	{
-		bullet[i].Update(bullet[i].bullet_kind,2);
+		bullet[i].Update(bullet[i].bullet_kind);
 	}
 }
 void enemyType2::Exit()

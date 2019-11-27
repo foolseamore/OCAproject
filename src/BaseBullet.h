@@ -16,13 +16,13 @@ public:
 	BaseBullet();
 	~BaseBullet();
 
-	void Init(float getx,float gety,int movx,int movy);
-	void Update(int kind,int type);
+	void Init(float getx,float gety,float movx,float movy);
+	void Update(int kind);
 	void Exit();
 	void DrawRect(int size);
 
 private:
-	void CheckReflect(int size,int type);
+	void CheckReflect(int size);
 	void BulletRender(int kind );
 	
 };

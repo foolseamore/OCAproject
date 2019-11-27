@@ -1,13 +1,10 @@
 #include "PlayScene.h"
 #include "UI.h"
 
-
-
 enemyType1 *e1;
 enemyType2 *e2;
 enemyType3 *e3;
-
-
+Boss *boss;
 
 PlayScene::PlayScene()
 {
@@ -21,6 +18,7 @@ PlayScene::~PlayScene()
 
 void PlayScene::Init()
 {
+	stage = ENEMY;
 	//ULT
 	ultUI = new ULT;
 	ultUI->Init();
@@ -31,61 +29,41 @@ void PlayScene::Init()
 	ScoreUI = new Score;
 	ScoreUI->Init();
 	
-
+	//player
 	p1 = new Player;
 	p1->Init();
 	p2 = new Player2;
 	p2->Init();
 
+	//敵の数
 	g_now_wave = GameManager::Instance().GetWave();
+	Quanity = g_now_wave + 3; 
 
-
-	type1_size = Random(g_now_wave, g_now_wave + 1);
-	type2_size = Random(g_now_wave, g_now_wave + 1);
-	type3_size = Random(g_now_wave, g_now_wave + 1);
-
-	e1 = new enemyType1[type1_size];
-	e2 = new enemyType2[type2_size];
-	e3 = new enemyType3[type3_size];
-
-	
-	for (int i = 0; i < type1_size; i++)
+	//enemy
+	e1 = new enemyType1[Quanity];
+	e2 = new enemyType2[Quanity];
+	e3 = new enemyType3[Quanity];
+	for (int i = 0; i < Quanity; i++)
 	{
 		e1[i].Init();
-	}
-	for (int i = 0; i < type2_size; i++)
-	{
 		e2[i].Init();
-	}
-	for (int i = 0; i < type3_size; i++)
-	{
 		e3[i].Init();
 	}
+
+	//boss
+	//boss = new Boss;
+	//boss->Init();
 
 }
 
 void PlayScene::Update()
 {
+	g_new_wave = GameManager::Instance().GetWave();
+
 	Print << U"PlayScene";
 
 	p1->Update();
 	p2->Update();
-
-	for (int i = 0; i < type1_size; i++)
-	{
-		e1[i].Update(); //更新
-		ReBornEnemy(&e1[i]);  //再生
-	}
-	for (int i = 0; i < type2_size; i++)
-	{
-		e2[i].Update();//更新
-		ReBornEnemy(&e2[i]);//再生
-	}
-	for (int i = 0; i < type3_size; i++)
-	{
-		e3[i].Update();//更新
-		ReBornEnemy(&e3[i]);//再生
-	}
 
 	//板が繋がってるかどうか
 	if (p1->GetX() >= p2->GetX() - 100)
@@ -93,97 +71,199 @@ void PlayScene::Update()
 		p1->x = p2->x - 100;
 		p1->isCombine = true;
 		p2->isCombine = true;
-		
+
 	}
 	else
 	{
 		p1->isCombine = false;
 		p2->isCombine = false;
 	}
-	
-	
-	for (int i = 0; i < type1_size; i++)
-	{
-		//反射処理
-		CaculateAngleE(&e1[i], p1);
-		CaculateAngleE(&e1[i], p2);
-		//HP減る判定
-		CheckHpE(&e1[i]);
 
-		for (int hitenemy = 0; hitenemy < type2_size; hitenemy++)
+	if (KeySpace.down() && ultUI->GetEnergy() == 30)
+	{
+		ultUI->SetEnergy(0);
+		for (int i = 0; i < Quanity; i++)
 		{
-			//当たり判定
-			HitEnemyE(&e1[i], &e2[hitenemy]);
-	
-		}
-		for (int hitenemy = 0; hitenemy < type3_size; hitenemy++)
-		{
-			//当たり判定
-			HitEnemyE(&e1[i], &e3[hitenemy]);
+			if (e1[i].state == LIVE)
+			{
+				GameManager::Instance().AddScore(1);
+				e1[i].state = DEAD;
+
+			}
+			if (e2[i].state == LIVE)
+			{
+				GameManager::Instance().AddScore(1);
+				e2[i].state = DEAD;
+			}
+			if (e3[i].state == LIVE)
+			{
+				GameManager::Instance().AddScore(1);
+				e3[i].state = DEAD;
+			}
 		}
 	}
 
-
-	for (int i = 0; i < BULLET_MAX; i++)
+	if (stage == ENEMY)
 	{
-		for (int j = 0; j < type2_size; j++)
+		if (g_now_wave != g_new_wave&&AllKilled_2&&AllKilled_3)
 		{
-			//反射処理
-			CaculateAngleB(&e2[j].bullet[i], p1);
-			CaculateAngleB(&e2[j].bullet[i], p2);
-			//HP減る判定
-			CheckHpB(&e2[j].bullet[i]);
+			
+			boss = new Boss;
+			boss->Init();
+			stage = BOSS;
+		}
 
-			for (int hitenemy = 0; hitenemy < type2_size; hitenemy++)
+		AllKilled_1 = true;
+		AllKilled_2 = true;
+		AllKilled_3 = true;
+
+		for (int i = 0; i < Quanity; i++)
+		{
+			e1[i].Update(); //更新			
+			e2[i].Update();//更新
+			e3[i].Update();//更新
+
+			//反射処理
+			CaculateAngleE(&e1[i], p1);
+			CaculateAngleE(&e1[i], p2);
+			//HP減る判定
+			CheckHpE(&e1[i]);
+
+			for (int hitenemy = 0; hitenemy < Quanity; hitenemy++)
 			{
 				//当たり判定
-				HitEnemyB(&e2[j].bullet[i], &e2[hitenemy]);
-			}
-			for (int hitenemy = 0; hitenemy < type3_size; hitenemy++)
-			{
-				
-				HitEnemyB(&e2[j].bullet[i], &e3[hitenemy]);
-			}
-		
-		}
-		for (int j = 0; j < type3_size; j++)
-		{
-			//反射処理
-			CaculateAngleB(&e3[j].bullet[i], p1);
-			CaculateAngleB(&e3[j].bullet[i], p2);
-			//HP減る判定
-			CheckHpB(&e3[j].bullet[i]);
+				HitEnemyE(&e1[i], &e2[hitenemy]);
+				//当たり判定
+				HitEnemyE(&e1[i], &e3[hitenemy]);
 
-			for (int hitenemy = 0; hitenemy < type2_size; hitenemy++)
-			{
-				HitEnemyB(&e3[j].bullet[i], &e2[hitenemy]);  //当たり判定
 			}
-			for (int hitenemy = 0; hitenemy < type3_size; hitenemy++)
+			for (int j = 0; j < BULLET_MAX; j++)
 			{
-				HitEnemyB(&e3[j].bullet[i], &e3[hitenemy]);  //当たり判定
+				//反射処理
+				CaculateAngleB(&e2[i].bullet[j], p1);
+				CaculateAngleB(&e2[i].bullet[j], p2);
+				//HP減る判定
+				CheckHpB(&e2[i].bullet[j]);
+
+				//反射処理
+				CaculateAngleB(&e3[i].bullet[j], p1);
+				CaculateAngleB(&e3[i].bullet[j], p2);
+				//HP減る判定
+				CheckHpB(&e3[i].bullet[j]);
+
+				for (int hitenemy = 0; hitenemy < Quanity; hitenemy++)
+				{
+					//当たり判定
+					HitEnemyB(&e2[i].bullet[j], &e2[hitenemy]);
+					HitEnemyB(&e2[i].bullet[j], &e3[hitenemy]);
+					HitEnemyB(&e3[i].bullet[j], &e2[hitenemy]);  
+					HitEnemyB(&e3[i].bullet[j], &e3[hitenemy]);  
+				}
+
 			}
+			//enemy live check
+			if (e1[i].state == BORN || e1[i].state == LIVE)
+			{
+				AllKilled_1 = false;
+				//continue;
+			}
+			
+			if (e2[i].state == BORN || e2[i].state == LIVE)
+			{
+				AllKilled_2 = false;
+				//continue;
+			}
+			if (e3[i].state == BORN || e3[i].state == LIVE)
+			{
+				AllKilled_3 = false;
+				//continue;
+			}
+			//enemy bullet flag check
+			for (int j = 0; j < BULLET_MAX; j++)
+			{
+				if (e2[i].bullet[j].flag) AllKilled_2 = false;
+				if (e3[i].bullet[j].flag) AllKilled_3 = false;
+			}
+		}
+
+		//もし敵が全滅されたら、改めて作る
+		if (g_now_wave == g_new_wave)
+		{
+			if (AllKilled_1)
+			{
+				delete[] e1;
+				e1 = new enemyType1[Quanity];
+				for (int i = 0; i < Quanity; i++)
+				{
+					e1[i].Init();
+				}
+			}
+			if (AllKilled_2)
+			{
+				delete[] e2;
+				e2 = new enemyType2[Quanity];
+				for (int i = 0; i < Quanity; i++)
+				{
+					e2[i].Init();
+				}
+			}
+			if (AllKilled_3)
+			{
+				delete[] e3;
+				e3 = new enemyType3[Quanity];
+				for (int i = 0; i < Quanity; i++)
+				{
+					e3[i].Init();
+				}
+			}
+		}
+	
+	}
+	//一定数の敵を倒したらボスが出る
+	if (stage == BOSS)
+	{
+		boss->Update();
+
+		if (KeySpace.down())
+		{
+			boss->state = DEAD;
+		}
+		if (boss->GetHP() == 0)
+		{
+			boss->state = DEAD;
+		}
+
+		for (int i = 0; i < BOSS_BULLET_MAX; i++)
+		{
+			CaculateAngleB(&boss->bullet[i], p1);
+			CaculateAngleB(&boss->bullet[i], p2);
+			CheckHpB(&boss->bullet[i]);
+			HitEnemyB(&boss->bullet[i], boss);
+		}
+
+		if (boss->state == DEAD)
+		{
+			delete boss;
+			delete[] e1;
+			delete[] e2;
+			delete[] e3;
+			g_now_wave = g_new_wave;
+			Quanity = g_now_wave + 3;
+			e1 = new enemyType1[Quanity];
+			e2 = new enemyType2[Quanity];
+			e3 = new enemyType3[Quanity];
+			for (int i = 0; i < Quanity; i++)
+			{
+				e1[i].Init();
+				e2[i].Init();
+				e3[i].Init();
+			}
+			stage = ENEMY;
 		}
 	}
-
-
 	ultUI->Update();
 	hpUI->Update();
 	ScoreUI->Update();
-
-
-
-	//g_new_wave = GameManager::Instance().GetWave();
-	//if (g_now_wave != g_new_wave)
-	//{
-	//	delete[] e1;
-	//	e1 = nullptr;
-	//	e1 = new enemyType1[type1_size];
-	//}
-
-	WaveCheck(type1_size, e1);
-	/*WaveCheck(type2_size, e2);
-	WaveCheck(type3_size, e3);*/
-
 }
 void PlayScene::Exit()
 {
@@ -207,12 +287,11 @@ void PlayScene::CaculateAngleE(enemyType1*enemy, BaseObject*player)
 			//enemy->SetY(514);
 			enemy->speedx = 1.5 * ENEMY_SPEED * cosf(TO_RAD(angle));
 			enemy->speedy = 1.5 * ENEMY_SPEED * sinf(TO_RAD(angle));
-			if (enemy->speedy < -0)
+			if (enemy->speedy < 0)
 			{
 				ultUI->SetEnergy(ultUI->GetEnergy() + 1);
 			}
 		}
-		
 	}
 }
 void PlayScene::CaculateAngleB(BaseBullet *bullet, BaseObject*enemy)
@@ -234,29 +313,30 @@ void PlayScene::CaculateAngleB(BaseBullet *bullet, BaseObject*enemy)
 
 void PlayScene::HitEnemyE(enemyType1*type1, EnemyBaseObject*typeother)
 {
-
-
 	if (type1->rect.intersects(typeother->rect) && typeother->state == LIVE && type1->IsReflect)
 	{
-		GameManager::Instance().AddScore();
+		GameManager::Instance().AddScore(2);
 		type1->state = DEAD;
 		typeother->state = DEAD;
-
 	}
-
 }
 
 void PlayScene::HitEnemyB(BaseBullet*bullet, EnemyBaseObject*type)
 {
-
-	if (bullet->rect.intersects(type->rect) && bullet->IsReflect&&type->state == LIVE)
+	if (bullet->rect.intersects(type->rect) && bullet->IsReflect&&type->state == LIVE && bullet->flag)
 	{
-		GameManager::Instance().AddScore();
+		if (type->GetTag() == T_Enemy)
+		{
+			GameManager::Instance().AddScore(1);
+			type->state = DEAD;
+		}
+		if (type->GetTag() == T_Boss)
+		{
+			boss->HpDecrease(1);
+		}
 		bullet->flag = false;
-		type->state = DEAD;
-
+		
 	}
-
 }
 void PlayScene::CheckHpB(BaseBullet *bullet)
 {
@@ -278,30 +358,5 @@ void PlayScene::CheckHpE(EnemyBaseObject *enemy)
 	}
 }
 
-void PlayScene::ReBornEnemy(EnemyBaseObject *enemy)
-{	
-		if (enemy->state == DEAD)
-		{
-			enemy->Init();
-		}
 
-}
 
-void PlayScene::WaveCheck(int type_size, EnemyBaseObject *enemy)
-{
-	g_new_wave = GameManager::Instance().GetWave();
-
-	if (g_now_wave != g_new_wave)
-	{
-		delete[] enemy;
-		enemy = nullptr;
-
-		g_now_wave = g_new_wave;
-
-		type_size = g_now_wave;
-
-		
-		enemy = new EnemyBaseObject[type_size];
-
-	}
-}

@@ -6,6 +6,7 @@ class EnemyBaseObject :
 protected:
 
 	int wave;
+	int tag;
 
 public:
 
@@ -20,5 +21,10 @@ public:
 	void Init() override;
 	void Update() override;
 	void Exit() override;
+
+	void SetTag(int tags) { tag = tags; }
+	int GetTag() { return tag; }
+
+
 };
 

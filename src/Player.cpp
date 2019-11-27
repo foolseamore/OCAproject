@@ -23,7 +23,7 @@ void Player::Init()
 
 void Player::DrawRectP(int sizex, int sizey)
 {
-	rect = RectF(Arg::center = Vec2(GetX(), GetY() - 58), sizex, sizey);
+	rect = RectF(Arg::center = Vec2(GetX(), GetY() - 56), sizex, sizey);
 	//rect.draw(Palette::Green);
 }
 
@@ -42,11 +42,14 @@ void Player::Key_Op()
 }
 void Player::Update()
 {
-	DrawRectP(100, 8);
+	
 	
 	DrawAnime(5, 8, 1, PLAYER_SIZE_X, PLAYER_SIZE_Y);
 	
+	DrawRectP(100, 10);
+
 	Key_Op();
+
 	RangeCheck();
 
 }

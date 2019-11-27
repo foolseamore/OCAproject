@@ -13,10 +13,12 @@ enemyType1::~enemyType1()
 
 void enemyType1::Init()
 {
+	SetTag(T_Enemy);
+	wave = GameManager::Instance().GetWave();
 	state = BORN;
 	born_pos = ENEMY_BORNPOS;
 	IsReflect = false;
-	texture = GameManager::Instance().GetEnemy(1,1);
+	texture = GameManager::Instance().GetEnemy(1,Random(0,wave-1));
 	SetX(Random(100,500));
 	SetY(-100);
 	img_c = 0;
@@ -37,7 +39,7 @@ void enemyType1::Update()
 		if (born_pos == 0)
 		{
 			SetY(GetY());
-			speedx = rand() % 10 - 5;
+			speedx = rand() % 12 - 6;
 			speedy = rand() % 5 + 5;
 			state = LIVE;
 		}

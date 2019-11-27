@@ -24,7 +24,7 @@ void GameManager::Init()
 	enemy_img_type1[1] = Texture(U"../data/enemy/type1/enemy2.png");
 	enemy_img_type1[2] = Texture(U"../data/enemy/type1/enemy6.png");
 	enemy_img_type1[3] = Texture(U"../data/enemy/type1/enemy8.png");
-	enemy_img_type1[4] = Texture(U"../data/enemy/type1/enemy12.png");
+	enemy_img_type1[4] = Texture(U"../data/enemy/type1/enemy11.png");
 	//Type2_’¼ü‘Å‚Â
 	enemy_img_type2[0] = Texture(U"../data/enemy/type2/enemy3.png");
 	enemy_img_type2[1] = Texture(U"../data/enemy/type2/enemy13.png");
@@ -38,6 +38,13 @@ void GameManager::Init()
 	enemy_img_type3[3] = Texture(U"../data/enemy/type3/enemy17.png");
 	enemy_img_type3[4] = Texture(U"../data/enemy/type3/enemy22.png");
 	
+	//Boss
+	boss_img[0] = Texture(U"../data/boss/sboss1.png");
+	boss_img[1] = Texture(U"../data/boss/sboss2.png");
+	boss_img[2] = Texture(U"../data/boss/sboss3.png");
+	boss_img[3] = Texture(U"../data/boss/sboss4.png");
+	boss_img[4] = Texture(U"../data/boss/boss2.png");
+	boss_img[5] = Texture(U"../data/boss/boss1.png");
 
 	/*enemy_img[4] = Texture(U"../data/enemy/enemy5.png");
 	enemy_img[6] = Texture(U"../data/enemy/enemy7.png");
@@ -75,14 +82,11 @@ void GameManager::Update()
 
 	sceneManager->Update(gameState);
 
-	if (time==0||hp==0)
+	if (time == 0 || hp <= 0)
 	{
 		gameState = End;
 	}
-	/*else if (KeyDown.down())
-	{
-		gameState += 1;
-	}*/
+
 	Print <<U"Wave:"<< GetWave();
 
 }

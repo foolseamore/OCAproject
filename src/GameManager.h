@@ -44,9 +44,14 @@ public:
 		}
 	}
 
+	Texture GetBoss(int g_wave)
+	{
+		return boss_img[g_wave];
+	}
+
 	//score
 	void SetScore(int sets) { score = sets; }
-	void AddScore() { score += 1; }
+	void AddScore(int add) { score += add; }
 	int GetScores() { return score; }
 	//wave
 	//void SetWave(int setw) { wave = setw/ONE_WAVE+1; }
@@ -70,6 +75,8 @@ private:
 	Texture enemy_img_type1[TYPE1_MAX];
 	Texture enemy_img_type2[TYPE2_MAX];
 	Texture enemy_img_type3[TYPE3_MAX];
+
+	Texture boss_img[6];
 
 	//Texture enemy_img[ENEMY_TEXTURE];
 	Texture bullet_img;
