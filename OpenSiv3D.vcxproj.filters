@@ -360,6 +360,9 @@
     <ClCompile Include="src\message.cpp">
       <Filter>Source Files\scene\UI</Filter>
     </ClCompile>
+    <ClCompile Include="src\Boss.cpp">
+      <Filter>Source Files\enemy\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BaseObject.h">
@@ -430,6 +433,9 @@
     </ClInclude>
     <ClInclude Include="src\message.h">
       <Filter>Header Files\scene\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Boss.h">
+      <Filter>Header Files\enemy\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

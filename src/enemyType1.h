@@ -8,7 +8,7 @@ public:
 	~enemyType1();
 
 	bool IsReflect;
-
+	
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void Exit() override;

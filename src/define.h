@@ -29,6 +29,8 @@ using namespace std;
 #define ENEMY_ROW          4
 #define ENEMY_COL          11
 
+#define BOSS_SIZE_X        200
+#define BOSS_SIZE_Y        128
 
 #define PLAYER_SIZE_X      100
 #define PLAYER_SIZE_Y      128
@@ -36,12 +38,13 @@ using namespace std;
 
 
 #define BULLET_MAX		   20
+#define BOSS_BULLET_MAX    200
+#define BOSS_BULLET_SPEED  6
 
-//#define TYPE1_MAX 5
-//#define TYPE2_MAX 5
-//#define TYPE3_MAX 5
 
-#define ONE_WAVE           5
+
+
+#define ONE_WAVE           40
 
 enum GameState
 {
@@ -60,6 +63,13 @@ enum State
 	BORN,
 	REFLECT,
 };
+
+enum TAG
+{
+	T_Enemy=100,
+	T_Boss,
+};
+
 
 struct BaseData
 {

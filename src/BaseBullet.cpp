@@ -12,7 +12,7 @@ BaseBullet::~BaseBullet()
 {
 }
 
-void BaseBullet::Init(float getx, float gety, int movx, int movy)
+void BaseBullet::Init(float getx, float gety, float movx, float movy)
 {
 	texture = GameManager::Instance().GetBullet();
 	pos.x = getx;
@@ -22,9 +22,9 @@ void BaseBullet::Init(float getx, float gety, int movx, int movy)
 	IsReflect = false;
 
 }
-void BaseBullet::Update(int kind,int type)
+void BaseBullet::Update(int kind)
 {
-	CheckReflect(14,type);
+	CheckReflect(14);
 	
 	BulletRender(kind);
 	
@@ -63,7 +63,7 @@ void BaseBullet::BulletRender(int kind )
 	}
 	
 }
-void BaseBullet::CheckReflect(int size,int type)
+void BaseBullet::CheckReflect(int size)
 {
 	if (pos.x <= 0 + size / 2 )
 	{
@@ -77,15 +77,9 @@ void BaseBullet::CheckReflect(int size,int type)
 		speedx = -speedx;
 		//IsReflect = true;
 	}
-	if (pos.y < 0 + size / 2)
+	if (pos.y < 0 - size / 2)
 	{	
-		if (type == 2)
-		{
-			pos.y = size;
-			speedy = -speedy;
-		}
-		if (type == 3)
-			flag = false;
+		flag = false;
 		//IsReflect = true;
 		
 	}

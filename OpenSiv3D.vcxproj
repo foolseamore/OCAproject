@@ -263,6 +263,7 @@
     <ClCompile Include="src\BaseBullet.cpp" />
     <ClCompile Include="src\BaseObject.cpp" />
     <ClCompile Include="src\BaseScene.cpp" />
+    <ClCompile Include="src\Boss.cpp" />
     <ClCompile Include="src\EndScene.cpp" />
     <ClCompile Include="src\EnemyBaseObject.cpp" />
     <ClCompile Include="src\enemyType1.cpp" />
@@ -287,6 +288,7 @@
     <ClInclude Include="src\BaseBullet.h" />
     <ClInclude Include="src\BaseObject.h" />
     <ClInclude Include="src\BaseScene.h" />
+    <ClInclude Include="src\Boss.h" />
     <ClInclude Include="src\define.h" />
     <ClInclude Include="src\EndScene.h" />
     <ClInclude Include="src\EnemyBaseObject.h" />

@@ -14,9 +14,12 @@ enemyType3::~enemyType3()
 
 void enemyType3::Init()
 {
+	SetTag(T_Enemy);
+
+	wave = GameManager::Instance().GetWave();
 	state = BORN;
 	born_pos = ENEMY_BORNPOS;
-	texture = GameManager::Instance().GetEnemy(3,2);
+	texture = GameManager::Instance().GetEnemy(3,Random(0,wave-1));
 	SetX(Random(0, ENEMY_COL)*ENEMY_SIZE + 36);
 	SetY((Random(0, ENEMY_ROW)*ENEMY_SIZE + 24) - born_pos);
 	img_c = 0;
@@ -64,7 +67,7 @@ void enemyType3::Update()
 	}
 	for (int i = 0; i < BULLET_MAX; i++)
 	{
-		bullet[i].Update(bullet[i].bullet_kind,3);
+		bullet[i].Update(bullet[i].bullet_kind);
 
 	}
 	

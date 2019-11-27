@@ -18,7 +18,7 @@ void ULT::Init()
 	h_ = 275;
 	ultwords_img = GameManager::Instance().GetUltWords();
 	energybar_img = GameManager::Instance().GetEnergyBar();
-	energy = 0;
+	energy = 30;
 	
 }
 void ULT::Update()
