@@ -19,6 +19,9 @@ void GameManager::Init()
 	player2_img = Texture(U"../data/player/rightboard.png");
 	earth_img = Texture(U"../data/bg/earth_bg.png");
 	ginnga_img = Texture(U"../data/bg/ginnga_bg.png");
+	light_img = Texture(U"../data/effect/light.png");
+	raser_img = Texture(U"../data/effect/raser.png");
+
 	//Type1_©E
 	enemy_img_type1[0] = Texture(U"../data/enemy/type1/enemy1.png");
 	enemy_img_type1[1] = Texture(U"../data/enemy/type1/enemy2.png");

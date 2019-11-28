@@ -1,0 +1,18 @@
+﻿  PlayScene.cpp
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(301): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(302): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(304): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(305): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(320): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(321): warning C4244: '初期化中': 'double' から 'float' への変換です。データが失われる可能性があります。
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(323): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+d:\shyashinnu\opensiv3d\projects\newgame\src\playscene.cpp(324): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+     ライブラリ D:\shyashinnu\opensiv3d\projects\newgame\Intermediate\OpenSiv3D\Release-x64\OpenSiv3D(64-bit).lib とオブジェクト D:\shyashinnu\opensiv3d\projects\newgame\Intermediate\OpenSiv3D\Release-x64\OpenSiv3D(64-bit).exp を作成中
+  コード生成しています。
+  1 of 1551 functions (<0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  コード生成が終了しました。
+  OpenSiv3D.vcxproj -> D:\shyashinnu\opensiv3d\projects\newgame\Intermediate\OpenSiv3D\Release-x64\OpenSiv3D(64-bit).exe
+  D:\shyashinnu\opensiv3d\projects\newgame\Intermediate\OpenSiv3D\Release-x64\OpenSiv3D(64-bit).exe
+  1 個のファイルをコピーしました

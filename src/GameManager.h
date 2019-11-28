@@ -32,6 +32,8 @@ public:
 	Texture GetUltWords() { return ultwords_img; }
 	Texture GetEnergyBar() { return energybar_img; }
 	Texture GetEnemyKilled() { return enemykilled_img; }
+	Texture GetLight() { return light_img; }
+	Texture GetRaser() { return raser_img; }
 
 	Texture GetEnemy(int type, int a) 
 	{
@@ -72,13 +74,15 @@ private:
 
 	Texture player1_img, player2_img;
 	Texture earth_img, ginnga_img;
+	Texture light_img;
+	Texture raser_img;
+
 	Texture enemy_img_type1[TYPE1_MAX];
 	Texture enemy_img_type2[TYPE2_MAX];
 	Texture enemy_img_type3[TYPE3_MAX];
-
 	Texture boss_img[6];
 
-	//Texture enemy_img[ENEMY_TEXTURE];
+
 	Texture bullet_img;
 	Texture number_img;
 	Texture score_img;

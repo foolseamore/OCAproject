@@ -22,6 +22,8 @@ void PlayScene::Init()
 	//ULT
 	ultUI = new ULT;
 	ultUI->Init();
+	skill = new Skill;
+	skill->Init();
 	//HP
 	hpUI = new HpUI;
 	hpUI->Init();
@@ -50,10 +52,7 @@ void PlayScene::Init()
 		e3[i].Init();
 	}
 
-	//boss
-	//boss = new Boss;
-	//boss->Init();
-
+	
 }
 
 void PlayScene::Update()
@@ -61,6 +60,7 @@ void PlayScene::Update()
 	g_new_wave = GameManager::Instance().GetWave();
 
 	Print << U"PlayScene";
+	Print << U"link : " << p1->isCombine;
 
 	p1->Update();
 	p2->Update();
@@ -79,35 +79,52 @@ void PlayScene::Update()
 		p2->isCombine = false;
 	}
 
-	if (KeySpace.down() && ultUI->GetEnergy() == 30)
+	if (KeySpace.down() && ultUI->GetEnergy() == 30 && p1->isCombine)
 	{
-		ultUI->SetEnergy(0);
-		for (int i = 0; i < Quanity; i++)
-		{
-			if (e1[i].state == LIVE)
-			{
-				GameManager::Instance().AddScore(1);
-				e1[i].state = DEAD;
+		p1->state = SKILL;
+		p2->state = SKILL;
+	}
 
-			}
-			if (e2[i].state == LIVE)
+	if (p1->state == SKILL && p2->state == SKILL)
+	{
+		skill->Update(p1->GetX(),p1->GetY());
+
+		if (skill->GetShotCount() > 70)
+
+		{
+			for (int i = 0; i < Quanity; i++)
 			{
-				GameManager::Instance().AddScore(1);
-				e2[i].state = DEAD;
+				if (e1[i].state == LIVE)
+				{
+					GameManager::Instance().AddScore(1);
+					e1[i].state = DEAD;
+
+				}
+				if (e2[i].state == LIVE)
+				{
+					GameManager::Instance().AddScore(1);
+					e2[i].state = DEAD;
+				}
+				if (e3[i].state == LIVE)
+				{
+					GameManager::Instance().AddScore(1);
+					e3[i].state = DEAD;
+				}
 			}
-			if (e3[i].state == LIVE)
-			{
-				GameManager::Instance().AddScore(1);
-				e3[i].state = DEAD;
-			}
+			ultUI->SetEnergy(0);
+			delete skill;
+			skill = new Skill;
+			skill->Init();
+			p1->state = LIVE;
+			p2->state = LIVE;
 		}
 	}
 
 	if (stage == ENEMY)
 	{
-		if (g_now_wave != g_new_wave&&AllKilled_2&&AllKilled_3)
+		if (g_now_wave != g_new_wave && AllKilled_2 && AllKilled_3)
 		{
-			
+
 			boss = new Boss;
 			boss->Init();
 			stage = BOSS;
@@ -274,17 +291,16 @@ void PlayScene::Exit()
 	delete ScoreUI;
 }
 
-void PlayScene::CaculateAngleE(enemyType1*enemy, BaseObject*player)
+void PlayScene::CaculateAngleE(enemyType1 *enemy, BaseObject *player)
 {
-	if (enemy->rect.intersects(player->rect))
+	if (enemy->rect.intersects(player->rect) && enemy->state==LIVE)
 	{
 		if (enemy->y >= player->rect.y)
 		{
 			enemy->IsReflect = true;
 			float dx = enemy->rect.x - (player->rect.x + 35) + (rand() % 40 - 20);
 			float dy = enemy->rect.y - player->rect.y + (rand() % 20 - 10);
-			float angle = TO_DEG(atan2f(dy, dx));// +(rand() % 20 - 10);
-			//enemy->SetY(514);
+			float angle = TO_DEG(atan2f(dy, dx));
 			enemy->speedx = 1.5 * ENEMY_SPEED * cosf(TO_RAD(angle));
 			enemy->speedy = 1.5 * ENEMY_SPEED * sinf(TO_RAD(angle));
 			if (enemy->speedy < 0)
@@ -294,15 +310,15 @@ void PlayScene::CaculateAngleE(enemyType1*enemy, BaseObject*player)
 		}
 	}
 }
-void PlayScene::CaculateAngleB(BaseBullet *bullet, BaseObject*enemy)
+void PlayScene::CaculateAngleB(BaseBullet *bullet, BaseObject *player)
 {
-	if (bullet->rect.intersects(enemy->rect))
+	if (bullet->rect.intersects(player->rect))
 	{
-		if (bullet->pos.y >= enemy->rect.y)
+		if (bullet->pos.y >= player->rect.y && bullet->flag)
 		{
 			bullet->IsReflect = true;
-			float dx = bullet->pos.x - (enemy->rect.x + 40) + (rand() % 40 - 20);
-			float dy = bullet->pos.y - (enemy->rect.y + 58) + (rand() % 20 - 10);
+			float dx = bullet->pos.x - (player->rect.x + 40) + (rand() % 40 - 20);
+			float dy = bullet->pos.y - (player->rect.y + 58) + (rand() % 20 - 10);
 			float angle = TO_DEG(atan2f(dy, dx)) + (rand() % 20 - 10);
 			bullet->speedx = 1.5 * ENEMY_SPEED * cosf(TO_RAD(angle));
 			bullet->speedy = 1.5 * ENEMY_SPEED * sinf(TO_RAD(angle));
@@ -311,7 +327,7 @@ void PlayScene::CaculateAngleB(BaseBullet *bullet, BaseObject*enemy)
 	}
 }
 
-void PlayScene::HitEnemyE(enemyType1*type1, EnemyBaseObject*typeother)
+void PlayScene::HitEnemyE(enemyType1 *type1, EnemyBaseObject *typeother)
 {
 	if (type1->rect.intersects(typeother->rect) && typeother->state == LIVE && type1->IsReflect)
 	{
@@ -321,9 +337,9 @@ void PlayScene::HitEnemyE(enemyType1*type1, EnemyBaseObject*typeother)
 	}
 }
 
-void PlayScene::HitEnemyB(BaseBullet*bullet, EnemyBaseObject*type)
+void PlayScene::HitEnemyB(BaseBullet *bullet, EnemyBaseObject *type)
 {
-	if (bullet->rect.intersects(type->rect) && bullet->IsReflect&&type->state == LIVE && bullet->flag)
+	if (bullet->rect.intersects(type->rect) && bullet->IsReflect && type->state == LIVE && bullet->flag)
 	{
 		if (type->GetTag() == T_Enemy)
 		{
@@ -340,7 +356,7 @@ void PlayScene::HitEnemyB(BaseBullet*bullet, EnemyBaseObject*type)
 }
 void PlayScene::CheckHpB(BaseBullet *bullet)
 {
-	if (bullet->pos.y >= 650&& bullet->flag)
+	if (bullet->pos.y >= 650 &&  bullet->flag)
 	{
      	hpUI->damage += 1;
 		GameManager::Instance().DecreseHP(1);

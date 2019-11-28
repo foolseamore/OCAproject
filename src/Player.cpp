@@ -17,6 +17,7 @@ void Player::Init()
 	SetX(100);
 	SetY(GAME_WINDOW_H);
 	img_c = 0;
+	state = LIVE;
 	
 	
 }
@@ -29,7 +30,7 @@ void Player::DrawRectP(int sizex, int sizey)
 
 void Player::Key_Op()
 {
-	if (KeyA.pressed())
+	if (KeyA.pressed() && state==LIVE)
 	{
 		isCombine = false;
 		SetX(GetX() - PLAYER_SPEED);

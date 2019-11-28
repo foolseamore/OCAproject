@@ -62,6 +62,7 @@ enum State
 	DEAD = 51,
 	BORN,
 	REFLECT,
+	SKILL,
 };
 
 enum TAG
