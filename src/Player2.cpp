@@ -18,6 +18,7 @@ void Player2::Init()
 	SetX(500);
 	SetY(GAME_WINDOW_H);
 	img_c = 0;
+	state = LIVE;
 
 
 }
@@ -33,7 +34,7 @@ void Player2::Key_Op()
 	{
 		SetX(GetX() - PLAYER_SPEED);
 	}
-	else if (KeyL.pressed())
+	else if (KeyL.pressed() && state==LIVE)
 	{
 		isCombine = false;
 		SetX(GetX() + PLAYER_SPEED);

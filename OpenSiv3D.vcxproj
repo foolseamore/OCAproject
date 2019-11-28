@@ -279,6 +279,7 @@
     <ClCompile Include="src\PlayScene.cpp" />
     <ClCompile Include="src\SceneManager.cpp" />
     <ClCompile Include="src\Score.cpp" />
+    <ClCompile Include="src\SKILL.cpp" />
     <ClCompile Include="src\Time.cpp" />
     <ClCompile Include="src\TitleScene.cpp" />
     <ClCompile Include="src\UI.cpp" />
@@ -305,6 +306,7 @@
     <ClInclude Include="src\SceneManager.h" />
     <ClInclude Include="src\Score.h" />
     <ClInclude Include="src\singleton.h" />
+    <ClInclude Include="src\SKILL.h" />
     <ClInclude Include="src\Time.h" />
     <ClInclude Include="src\TitleScene.h" />
     <ClInclude Include="src\UI.h" />

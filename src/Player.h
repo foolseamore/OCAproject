@@ -10,6 +10,7 @@ public:
 	~Player();
 
 	bool isCombine = false;
+	State state;
 
 	
 	void Init() override;

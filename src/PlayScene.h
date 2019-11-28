@@ -8,6 +8,7 @@
 #include"enemyType2.h"
 #include"enemyType3.h"
 #include "Boss.h"
+#include "SKILL.h"
 
 class PlayScene :
 	public BaseScene
@@ -32,6 +33,8 @@ class PlayScene :
 	int g_now_wave;
 	int g_new_wave;
 
+	
+
 
 public:
 	PlayScene();
@@ -42,6 +45,7 @@ public:
 	Score *ScoreUI;
 	Player *p1;
 	Player2 *p2;
+	Skill *skill;
 	
 
 	void Init() override;
@@ -51,19 +55,15 @@ public:
 private:
 
 	//ìGÇÃíµÇÀï‘Ç∑
-	void CaculateAngleE(enemyType1*b1, BaseObject*b2);
+	void CaculateAngleE(enemyType1 *enemy, BaseObject *player);
 	//ã ÇÃíµÇÀï‘Ç∑
-	void CaculateAngleB(BaseBullet *b1, BaseObject*b2);
+	void CaculateAngleB(BaseBullet *bullet, BaseObject *player);
 	//ì|Ç∑îªíË
-	void HitEnemyE(enemyType1*type1, EnemyBaseObject*typeother);
-	void HitEnemyB(BaseBullet*b1, EnemyBaseObject*type);
+	void HitEnemyE(enemyType1 *type1, EnemyBaseObject *typeother);
+	void HitEnemyB(BaseBullet *b1, EnemyBaseObject *type);
 	//HPå∏ÇÈîªíË
 	void CheckHpB(BaseBullet *b1);
 	void CheckHpE(EnemyBaseObject *e1);
-	//Wave ïœçX
-	//void WaveCheck(bool live, EnemyBaseObject *enemy);
-
-
 
 };
 

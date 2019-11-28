@@ -71,9 +71,9 @@ void BaseBullet::CheckReflect(int size)
 		speedx = -speedx;
 		//IsReflect = true;
 	}
-	if (pos.x >= GAME_WINDOW_W - 2 / size)
+	if (pos.x >= GAME_WINDOW_W -  size / 2)
 	{
-		pos.x = GAME_WINDOW_W-size;
+		//pos.x = GAME_WINDOW_W-size/2;
 		speedx = -speedx;
 		//IsReflect = true;
 	}

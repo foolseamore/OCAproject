@@ -8,7 +8,7 @@ public:
 	Player2();
 	~Player2();
 	bool isCombine = false;
-
+	State state;
 
 	void Init() override;
 	void Update() override;

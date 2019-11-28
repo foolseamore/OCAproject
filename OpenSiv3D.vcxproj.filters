@@ -363,6 +363,9 @@
     <ClCompile Include="src\Boss.cpp">
       <Filter>Source Files\enemy\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="src\SKILL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BaseObject.h">
@@ -436,6 +439,9 @@
     </ClInclude>
     <ClInclude Include="src\Boss.h">
       <Filter>Header Files\enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SKILL.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,6 +20,7 @@ void ULT::Init()
 	energybar_img = GameManager::Instance().GetEnergyBar();
 	energy = 30;
 	
+	
 }
 void ULT::Update()
 {
@@ -35,6 +36,8 @@ void ULT::Update()
 	
 	
 }
+
+
 void ULT::Exit()
 {
 

@@ -1,5 +1,7 @@
 #pragma once
 #include "define.h"
+#include "BaseScene.h"
+
 class ULT
 {
 	Texture ultwords_img;
@@ -21,6 +23,7 @@ public:
 	void Init();
 	void Update();
 	void Exit();
+
 	
 	void SetEnergy(int sete) { energy = sete; }
 	int GetEnergy() { return energy; }

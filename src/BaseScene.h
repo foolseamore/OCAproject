@@ -1,7 +1,7 @@
 #pragma once
 #include "define.h"
 #include "BaseObject.h"
-class BaseScene
+class BaseScene:public BaseObject
 {
 protected:
 
