@@ -29,10 +29,7 @@ void HpUI::Init()
 		g_hp[i].cnt = 0;
 		g_hp[i].pos.x = 806 - 38 * i;
 		g_hp[i].pos.y = 507;
-	}
-	/*g_hp[0].cnt = 1;
-	g_hp[1].cnt = 0;
-	g_hp[2].cnt = 0;*/
+	}	
 }
 void HpUI::Update()
 {
@@ -46,23 +43,6 @@ void HpUI::Update()
 	{
 		number_img(38 * g_hp[i].cnt,0, 38, 38).draw(g_hp[i].pos.x, g_hp[i].pos.y,rgb);
 	}
-
-	/*if (GetDamage)
-	{
-		g_hp[2].cnt -= 1;
-		GetDamage = false;
-	}*/
-
-
-	/*for (int i = 2; i > 0; i--)
-	{
-		if (g_hp[i].cnt < 0)
-		{
-			g_hp[i].cnt = 9;
-			g_hp[i - 1].cnt--;
-		}
-	}*/
-
 
 }
 void HpUI::Exit()

@@ -3,6 +3,11 @@
 class TitleScene :
 	public BaseScene
 {
+	Texture title_img;
+	Texture bg_img;
+	Texture start_img;
+	Texture exit_img;
+	Texture select_img;
 public:
 	TitleScene();
 	~TitleScene();

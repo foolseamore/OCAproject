@@ -17,7 +17,10 @@ public:
 	void Exit();
 
 	
-	
+	Texture GetTitle() { return title_img; }
+	Texture GetBg() { return ginnga_t_img; }
+	Texture GetStart() { return start_img; }
+	Texture GetExit() { return exit_img; }
 	Texture GetPlayer1() { return player1_img; }
 	Texture GetPlayer2() { return player2_img; }
 	Texture GetEarth() { return earth_img; }
@@ -71,6 +74,11 @@ private:
 	GameManager();
 
 	SceneManager* sceneManager;
+	//title
+	Texture title_img;
+	Texture ginnga_t_img;
+	Texture start_img;
+	Texture exit_img;
 
 	Texture player1_img, player2_img;
 	Texture earth_img, ginnga_img;
