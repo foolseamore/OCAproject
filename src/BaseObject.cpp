@@ -24,6 +24,7 @@ void BaseObject::DrawRect(int sizex,int sizey)
 void BaseObject::DrawCircle(int sizex)
 {
 	circle = Circle(Arg::center = Vec2(GetX(), GetY()), sizex);
+	
 }
 
 void BaseObject::DrawAnime(int max_frame, int frame, int speed, int sizex, int sizey)

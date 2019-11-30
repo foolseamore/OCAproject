@@ -13,7 +13,12 @@ GameManager::~GameManager()
 
 void GameManager::Init()
 {
-	gameState = Play;
+	gameState = Title;
+
+	title_img = Texture(U"../data/title/Title2.png");
+	ginnga_t_img = Texture(U"../data/title/ginnga_t.png");
+	start_img = Texture(U"../data/title/start.png");
+	exit_img = Texture(U"../data/title/exit.png");
 
 	player1_img = Texture(U"../data/player/leftboard.png");
 	player2_img = Texture(U"../data/player/rightboard.png");
