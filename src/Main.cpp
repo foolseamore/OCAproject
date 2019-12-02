@@ -20,7 +20,7 @@ void Main()
 	game->Exit();
 
 	delete game;
-	game = 0;
+	game = 0;	
 
 
 }

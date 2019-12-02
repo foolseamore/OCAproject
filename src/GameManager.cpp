@@ -15,8 +15,9 @@ void GameManager::Init()
 {
 	gameState = Title;
 
-	title_img = Texture(U"../data/title/Title2.png");
-	ginnga_t_img = Texture(U"../data/title/ginnga_t.png");
+	title_img = Texture(U"../data/title/Title1.png");
+	title_earth_img = Texture(U"../data/title/earth_title.png");
+	ginnga_t_img = Texture(U"../data/title/ginnga_t1.png");
 	start_img = Texture(U"../data/title/start.png");
 	exit_img = Texture(U"../data/title/exit.png");
 

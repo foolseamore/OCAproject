@@ -18,6 +18,7 @@ public:
 
 	
 	Texture GetTitle() { return title_img; }
+	Texture GetTitleEarth(){return title_earth_img;}
 	Texture GetBg() { return ginnga_t_img; }
 	Texture GetStart() { return start_img; }
 	Texture GetExit() { return exit_img; }
@@ -79,6 +80,7 @@ private:
 	Texture ginnga_t_img;
 	Texture start_img;
 	Texture exit_img;
+	Texture title_earth_img;
 
 	Texture player1_img, player2_img;
 	Texture earth_img, ginnga_img;
