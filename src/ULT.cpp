@@ -30,7 +30,7 @@ void ULT::Update()
 	
 	for (int i= 0; i < energy; i++)
 	{
-		Rect(710+6*i,434,4,32).draw(Palette::Blue);
+		Rect(710 + 6 * i, 434, 4, 32).draw(Color(255 - 2 * i, 0 + 8 * i, 0));//Palette::Yellow);
 	}
 	energybar_img.drawAt(800, 450);
 	

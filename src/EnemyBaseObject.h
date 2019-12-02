@@ -17,6 +17,7 @@ public:
 	float speedx, speedy;
 	State state;
 	int born_pos;
+	int r_cnt;
 
 	void Init() override;
 	void Update() override;

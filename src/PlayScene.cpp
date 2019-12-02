@@ -89,7 +89,7 @@ void PlayScene::Update()
 	{
 		skill->Update(p1->GetX(),p1->GetY());
 
-		if (skill->GetShotCount() > 70)
+		if (skill->GetShotCount() > 35)
 
 		{
 			for (int i = 0; i < Quanity; i++)

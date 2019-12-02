@@ -19,8 +19,8 @@ void enemyType1::Init()
 	born_pos = ENEMY_BORNPOS;
 	IsReflect = false;
 	texture = GameManager::Instance().GetEnemy(1,Random(0,wave-1));
-	SetX(Random(100,500));
-	SetY(-100);
+	//SetX(Random(100,500));
+	//SetY(-100);
 	img_c = 0;
 	SetX(Random(0, ENEMY_COL)*ENEMY_SIZE + 36);
 	SetY((Random(0, ENEMY_ROW)*ENEMY_SIZE + 24) - born_pos);
