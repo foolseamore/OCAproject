@@ -20,7 +20,7 @@ void TitleScene::Init()
 	exit_img = GameManager::Instance().GetExit();
 	select_img = GameManager::Instance().GetEarthHp();
 	select.pos.x = 310;
-	select.pos.y = 500;
+	select.pos.y = 550;
 	select.cnt = 0;
 	for (int i = 0; i < 10; i++)
 	{
@@ -70,7 +70,7 @@ void TitleScene::Update()
 				enemy[i].speedx = -enemy[i].speedx;
 				enemy[i].r_cnt += 1;
 			}
-			if (enemy[i].r_cnt == 5)
+			if (enemy[i].r_cnt >= 5)
 			{
 				
 				enemy[i].SetX(Random(100, 750));
@@ -82,27 +82,28 @@ void TitleScene::Update()
 		}
 	}	
 	
-	title_img.drawAt(WINDOW_W / 2, 300,HSV(60,0.7,1));
-	start_img.drawAt(WINDOW_W / 2, 500);
-	exit_img.drawAt(WINDOW_W / 2, 600);
+	//title_img.drawAt(WINDOW_W / 2, 300,HSV(60,0.7,1));
+	title_img.drawAt(WINDOW_W / 2, 300);
+	start_img.drawAt(WINDOW_W / 2, 550);
+	exit_img.drawAt(WINDOW_W / 2, 650);
 	select_img((select.cnt  % 73) * 64,0,64,64).scaled(0.6).drawAt(select.pos.x, select.pos.y);
 	
 
 	if (KeyDown.down())
 	{
-		select.pos.y = 600;
+		select.pos.y = 650;
 	}
 	else if (KeyUp.down())
 	{
-		select.pos.y = 500;
+		select.pos.y = 550;
 	}
 	if (KeyEnter.down())
 	{
-		if (select.pos.y == 500)
+		if (select.pos.y == 550)
 		{
 			GameManager::Instance().gameState = Play;
 		}
-		else if (select.pos.y == 600)
+		else if (select.pos.y == 650)
 		{
 			System::Exit();
 		}

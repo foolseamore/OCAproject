@@ -1,5 +1,6 @@
 #pragma once
 #include "BaseObject.h"
+#include "Explosion.h"
 class EnemyBaseObject :
 	public BaseObject
 {
@@ -7,6 +8,7 @@ protected:
 
 	int wave;
 	int tag;
+	Explosion *explode;
 
 public:
 

@@ -269,6 +269,7 @@
     <ClCompile Include="src\enemyType1.cpp" />
     <ClCompile Include="src\enemyType2.cpp" />
     <ClCompile Include="src\enemyType3.cpp" />
+    <ClCompile Include="src\Explosion.cpp" />
     <ClCompile Include="src\GameMain.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\HpUI.cpp" />
@@ -296,6 +297,7 @@
     <ClInclude Include="src\enemyType1.h" />
     <ClInclude Include="src\enemyType2.h" />
     <ClInclude Include="src\enemyType3.h" />
+    <ClInclude Include="src\Explosion.h" />
     <ClInclude Include="src\GameMain.h" />
     <ClInclude Include="src\GameManager.h" />
     <ClInclude Include="src\HpUI.h" />

@@ -127,6 +127,12 @@
     <Filter Include="Header Files\score">
       <UniqueIdentifier>{4dfa1b64-ae58-44dc-9ef1-a03e8fa2a9c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\effect">
+      <UniqueIdentifier>{63db761d-8e22-4609-a166-306f15405719}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\effect">
+      <UniqueIdentifier>{f198ca66-004e-4d46-9442-6d2f47d9ed85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="App\icon.ico">
@@ -364,7 +370,10 @@
       <Filter>Source Files\enemy\Boss</Filter>
     </ClCompile>
     <ClCompile Include="src\SKILL.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\charater</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Explosion.cpp">
+      <Filter>Source Files\effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -441,7 +450,10 @@
       <Filter>Header Files\enemy\Boss</Filter>
     </ClInclude>
     <ClInclude Include="src\SKILL.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\charater</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Explosion.h">
+      <Filter>Header Files\effect</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

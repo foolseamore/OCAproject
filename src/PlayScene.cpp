@@ -332,7 +332,7 @@ void PlayScene::HitEnemyE(enemyType1 *type1, EnemyBaseObject *typeother)
 	if (type1->rect.intersects(typeother->rect) && typeother->state == LIVE && type1->IsReflect)
 	{
 		GameManager::Instance().AddScore(2);
-		type1->state = DEAD;
+		type1->state = EXPLODE;
 		typeother->state = DEAD;
 	}
 }
@@ -370,7 +370,7 @@ void PlayScene::CheckHpE(EnemyBaseObject *enemy)
 	{
 		hpUI->damage += 1;
 		GameManager::Instance().DecreseHP(1);
-		enemy->state = DEAD;
+		enemy->state = EXPLODE;
 	}
 }
 

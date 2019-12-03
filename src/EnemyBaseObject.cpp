@@ -4,6 +4,7 @@
 
 EnemyBaseObject::EnemyBaseObject()
 {
+	explode = new Explosion;
 }
 
 
