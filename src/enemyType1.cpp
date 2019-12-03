@@ -53,7 +53,18 @@ void enemyType1::Update()
 		x += speedx;
 		y += speedy;
 	}
+	if (state == EXPLODE)
+	{
+		static int cnt = 0;
+		cnt++;
+		explode->Update();
+		if (cnt * 5 >= explode->max_frame)
+		{
+			state = DEAD;
+			delete explode;
+		}
 	}
+}
 	
 void enemyType1::Exit()
 {

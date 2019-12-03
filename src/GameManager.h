@@ -54,6 +54,10 @@ public:
 	{
 		return boss_img[g_wave];
 	}
+	Texture GetExplode(int rand)
+	{
+		return explosion_img[rand];
+	}
 
 	//score
 	void SetScore(int sets) { score = sets; }
@@ -105,6 +109,11 @@ private:
 	Texture ultwords_img;
 	Texture energybar_img;
 	Texture enemykilled_img;
+
+	//effect explosion
+	Texture explosion_img[5];
+	
+
 
 
 	int score = 0; //score

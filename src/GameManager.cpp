@@ -15,7 +15,7 @@ void GameManager::Init()
 {
 	gameState = Title;
 
-	title_img = Texture(U"../data/title/Title1.png");
+	title_img = Texture(U"../data/title/Title4.png");
 	title_earth_img = Texture(U"../data/title/earth_title.png");
 	ginnga_t_img = Texture(U"../data/title/ginnga_t1.png");
 	start_img = Texture(U"../data/title/start.png");
@@ -54,6 +54,13 @@ void GameManager::Init()
 	boss_img[3] = Texture(U"../data/boss/sboss4.png");
 	boss_img[4] = Texture(U"../data/boss/boss2.png");
 	boss_img[5] = Texture(U"../data/boss/boss1.png");
+
+	//effect explosion
+	explosion_img[0] = Texture(U"../data/effect/explosion/explode1.png");
+	explosion_img[1] = Texture(U"../data/effect/explosion/explode2.png");
+	explosion_img[2] = Texture(U"../data/effect/explosion/explode3.png");
+	explosion_img[3] = Texture(U"../data/effect/explosion/explode4.png");
+	explosion_img[4] = Texture(U"../data/effect/explosion/explosion_big.png");
 
 	/*enemy_img[4] = Texture(U"../data/enemy/enemy5.png");
 	enemy_img[6] = Texture(U"../data/enemy/enemy7.png");

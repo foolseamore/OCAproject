@@ -63,6 +63,7 @@ enum State
 	BORN,
 	REFLECT,
 	SKILL,
+	EXPLODE,
 };
 
 enum TAG
