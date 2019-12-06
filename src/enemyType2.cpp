@@ -4,15 +4,19 @@
 
 enemyType2::enemyType2()
 {
+	explode = new Explosion;
 }
 
 
 enemyType2::~enemyType2()
 {
+	delete explode;
 }
 
 void enemyType2::Init()
 {
+	explode->Init(Random(0, 3));
+	
 	SetTag(T_Enemy);
 	wave = GameManager::Instance().GetWave();
 	state = BORN;
@@ -24,8 +28,6 @@ void enemyType2::Init()
 	bullet_cnt = 0;
 	cool_time = 50;
 	speedy = Random(3,6);
-	
-
 }
 
 void enemyType2::Update()
@@ -72,6 +74,17 @@ void enemyType2::Update()
 	for (int i = 0; i < BULLET_MAX; i++)
 	{
 		bullet[i].Update(bullet[i].bullet_kind);
+	}
+	if (state == EXPLODE)
+	{
+		explode->SetX(GetX());
+		explode->SetY(GetY());
+		explode->Update();
+
+		if (explode->GetImg_C() / 5 + 1 >= explode->max_frame)
+		{
+			state = DEAD;
+		}
 	}
 }
 void enemyType2::Exit()

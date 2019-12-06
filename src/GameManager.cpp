@@ -60,7 +60,7 @@ void GameManager::Init()
 	explosion_img[1] = Texture(U"../data/effect/explosion/explode2.png");
 	explosion_img[2] = Texture(U"../data/effect/explosion/explode3.png");
 	explosion_img[3] = Texture(U"../data/effect/explosion/explode4.png");
-	explosion_img[4] = Texture(U"../data/effect/explosion/explosion_big.png");
+	explosion_img[4] = Texture(U"../data/effect/explosion/explosion_big1.png");
 
 	/*enemy_img[4] = Texture(U"../data/enemy/enemy5.png");
 	enemy_img[6] = Texture(U"../data/enemy/enemy7.png");

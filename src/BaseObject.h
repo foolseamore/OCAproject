@@ -4,7 +4,7 @@
 class BaseObject
 {
 protected:
-
+	int tag;
 	
 	
 	
@@ -24,6 +24,9 @@ public:
 	void SetY(float inY) { y = inY; }
 	float GetX() { return x; }
 	float GetY() { return y; }
+	int GetImg_C() { return img_c; }
+	void SetTag(int tags) { tag = tags; }
+	int GetTag() { return tag; }
 	RectF GetRect() { return rect; }
 	void DrawRect(int sizex,int sizey);
 	void DrawCircle(int sizex);

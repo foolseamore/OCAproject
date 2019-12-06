@@ -70,6 +70,7 @@ enum TAG
 {
 	T_Enemy=100,
 	T_Boss,
+	T_EXPLODE,
 };
 
 

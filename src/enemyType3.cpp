@@ -4,18 +4,20 @@
 
 enemyType3::enemyType3()
 {
+	explode = new Explosion;
 }
 
 
 enemyType3::~enemyType3()
 {
-	
+	delete explode;
 }
 
 void enemyType3::Init()
 {
+	explode->Init(Random(0,3));
+	
 	SetTag(T_Enemy);
-
 	wave = GameManager::Instance().GetWave();
 	state = BORN;
 	born_pos = ENEMY_BORNPOS;
@@ -71,6 +73,17 @@ void enemyType3::Update()
 
 	}
 	
+	if (state == EXPLODE)
+	{
+		explode->SetX(GetX());
+		explode->SetY(GetY());
+		explode->Update();
+
+		if (explode->GetImg_C() / 5 + 1 >= explode->max_frame)
+		{
+			state = DEAD;
+		}
+	}
 }
 void enemyType3::Exit()
 {
