@@ -5,15 +5,14 @@ class Explosion :
 {
 	int select_effect;
 	
+
 public:
 	Explosion();
 	~Explosion();
 
 	int max_frame;
 
-	void SetE(int se) { select_effect = se; }
-
-	void Init();
+	void Init(int);
 	void Update();
 	void Exit();
 };

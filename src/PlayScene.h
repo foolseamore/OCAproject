@@ -25,15 +25,16 @@ class PlayScene :
 	int type3_size;
 	int Quanity;
 
-	bool AllKilled_1;
-	bool AllKilled_2;
-	bool AllKilled_3;
+	bool All_Kill;
 
 	int score;
 	int g_now_wave;
 	int g_new_wave;
 
-	
+	enemyType1 *e1[10] = { nullptr };
+	enemyType2 *e2[10] = { nullptr };
+	enemyType3 *e3[10] = { nullptr };
+	Boss *boss = nullptr;
 
 
 public:
@@ -60,9 +61,9 @@ private:
 	void CaculateAngleB(BaseBullet *bullet, BaseObject *player);
 	//“|‚·”»’è
 	void HitEnemyE(enemyType1 *type1, EnemyBaseObject *typeother);
-	void HitEnemyB(BaseBullet *b1, EnemyBaseObject *type);
+	void HitEnemyB(BaseBullet *bullet, EnemyBaseObject *type);
 	//HPŒ¸‚é”»’è
-	void CheckHpB(BaseBullet *b1);
+	void CheckHpB(BaseBullet *bullet);
 	void CheckHpE(EnemyBaseObject *e1);
 
 };

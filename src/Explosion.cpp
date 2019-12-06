@@ -4,8 +4,7 @@
 
 Explosion::Explosion()
 {
-	select_effect = Random(0, 3);
-	texture = GameManager::Instance().GetExplode(select_effect);
+	
 }
 
 
@@ -13,9 +12,11 @@ Explosion::~Explosion()
 {
 }
 
-void Explosion::Init()
+void Explosion::Init(int kind)
 {
-	//max_frame = 0;
+	select_effect = kind;
+	texture = GameManager::Instance().GetExplode(kind);
+	
 }
 void Explosion::Update()
 {
@@ -25,7 +26,7 @@ void Explosion::Update()
 	case 1:max_frame = 15; DrawAnime(max_frame, 5, 2, 48, 48); break;
 	case 2:max_frame = 23; DrawAnime(max_frame, 5, 2, 48, 48); break;
 	case 3:max_frame = 13; DrawAnime(max_frame, 5, 2, 48, 48); break;
-	//case 4:max_frame = 68; DrawAnime(max_frame, 5, 1, 200, 209); break;
+	case 4:max_frame = 68; DrawAnime(max_frame, 5, 4, 100, 105); break;
 	default: break;
 	}
 	

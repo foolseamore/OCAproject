@@ -1,5 +1,6 @@
 #pragma once
 #include "define.h"
+#include "Explosion.h"
 class BaseBullet
 {
 	Texture texture;

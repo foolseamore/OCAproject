@@ -4,23 +4,25 @@
 
 enemyType1::enemyType1()
 {
+	explode = new Explosion;
 }
 
 
 enemyType1::~enemyType1()
 {
+	delete explode;
 }
 
 void enemyType1::Init()
 {
+	explode->Init(Random(0, 3));
+	
 	SetTag(T_Enemy);
 	wave = GameManager::Instance().GetWave();
 	state = BORN;
 	born_pos = ENEMY_BORNPOS;
 	IsReflect = false;
 	texture = GameManager::Instance().GetEnemy(1,Random(0,wave-1));
-	//SetX(Random(100,500));
-	//SetY(-100);
 	img_c = 0;
 	SetX(Random(0, ENEMY_COL)*ENEMY_SIZE + 36);
 	SetY((Random(0, ENEMY_ROW)*ENEMY_SIZE + 24) - born_pos);
@@ -55,13 +57,13 @@ void enemyType1::Update()
 	}
 	if (state == EXPLODE)
 	{
-		static int cnt = 0;
-		cnt++;
+		explode->SetX(GetX());
+		explode->SetY(GetY());
 		explode->Update();
-		if (cnt * 5 >= explode->max_frame)
+
+		if (explode->GetImg_C() / 5+1 >= explode->max_frame)
 		{
 			state = DEAD;
-			delete explode;
 		}
 	}
 }

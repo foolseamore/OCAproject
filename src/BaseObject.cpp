@@ -29,10 +29,16 @@ void BaseObject::DrawCircle(int sizex)
 
 void BaseObject::DrawAnime(int max_frame, int frame, int speed, int sizex, int sizey)
 {
+	int scale = 1;
+
+	if (tag == T_EXPLODE)
+	{
+		scale = 2;
+	}
 
 	img_c = img_c + speed;
 
-	texture((img_c / frame) % max_frame*sizex, 0, sizex, sizey).drawAt(GetX(), GetY());
+	texture((img_c / frame) % max_frame*sizex, 0, sizex, sizey).scaled(scale).drawAt(GetX(), GetY());
 
 }
 

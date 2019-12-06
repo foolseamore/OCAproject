@@ -5,15 +5,19 @@
 
 Boss::Boss()
 {
+	explode = new Explosion;
 }
 
 
 Boss::~Boss()
 {
+	delete explode;
 }
 
 void Boss::Init()
 {
+	explode->Init(4);
+	explode->SetTag(T_EXPLODE);
 	SetTag(T_Boss);
 	wave = GameManager::Instance().GetWave();
 	state = BORN;
@@ -85,6 +89,21 @@ void Boss::Update()
 			bullet[i].Update(bullet[i].bullet_kind);
 		}
 
+		if (HP == 0)
+		{
+			state = EXPLODE;
+		}
+	}
+	if (state == EXPLODE)
+	{
+		explode->SetX(GetX());
+		explode->SetY(GetY());
+		explode->Update();
+
+		if (explode->GetImg_C() / 5 + 1 >= explode->max_frame)
+		{
+			state = DEAD;
+		}
 	}
 }
 void Boss::Exit()
